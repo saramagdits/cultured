@@ -32,3 +32,7 @@ node_modules
 *.iml
 
 \.idea/
+
+server/environment\.js
+
+server/environment/

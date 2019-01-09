@@ -1,25 +1,29 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const logger = require('morgan');
-
+// =======================
+// ENVIRONMENT VARIABLES
+// =======================
 const env = require('./environment/environment');
-
-const { Pool, Client } = require('pg');
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const recipesRouter = require('./routes/recipes');
-const ingredientsRouter = require('./routes/ingredients');
 
 const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 // TODO consider updating location of static files to shared folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// =======================
+// ROUTER
+// =======================
+const mountRoutes = require('./routes/router');
+mountRoutes(app);
 
 // ===========================
 // DATABASE CONNECTION
@@ -34,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // const client = new Client(env.db);
 // client.connect();
-// // test to add rows
+// test to add rows
 // const date = new Date();
 // console.log(date);
 // const query = {
@@ -49,14 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   console.log(err, res);
 //   client.end();
 // });
-// ===========================
-// ROUTER
-// ===========================
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/recipes', recipesRouter);
-app.use('/ingredients', ingredientsRouter);
 console.log('Server started...');
 
 module.exports = app;

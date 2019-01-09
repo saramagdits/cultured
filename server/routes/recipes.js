@@ -1,9 +1,10 @@
+// TODO configure to match users route structure, including the express-promise-router
 var express = require('express');
 var router = express.Router();
 
-const env = require('./environment/environment');
-const Client  = require('pg');
-
+const env = require('../environment/environment');
+const { Pool, Client } = require('pg');
+//
 const client = new Client(env.db);
 client.connect();
 

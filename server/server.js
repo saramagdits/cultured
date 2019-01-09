@@ -9,6 +9,8 @@ const { Pool, Client } = require('pg');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const recipesRouter = require('./routes/recipes');
+const ingredientsRouter = require('./routes/ingredients');
 
 const app = express();
 
@@ -30,16 +32,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   pool.end();
 // });
 
-const client = new Client(env.db);
-client.connect();
-// test to add rows
-const query = {
-  text: 'INSERT INTO test(first_name, last_name) VALUES($1, $2)',
-  values: ['greg', 'magdits']
-};
-client.query(query)
-  .then(res => console.log(res.rows[0]))
-  .catch(e => console.error(e.stack));
+// const client = new Client(env.db);
+// client.connect();
+// // test to add rows
+// const date = new Date();
+// console.log(date);
+// const query = {
+//   text: 'INSERT INTO test(first_name, last_name) VALUES($1, $2)',
+//   values: ['greg', 'magdits']
+// };
+// client.query(query)
+//   .then(res => console.log(res.rows[0]))
+//   .catch(e => console.error(e.stack));
 
 // client.query('SELECT NOW()', (err, res) => {
 //   console.log(err, res);
@@ -51,6 +55,8 @@ client.query(query)
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/recipes', recipesRouter);
+app.use('/ingredients', ingredientsRouter);
 console.log('Server started...');
 
 module.exports = app;

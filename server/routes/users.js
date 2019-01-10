@@ -6,12 +6,6 @@ const db = require('../db');
 // it allows you to use async functions as route handlers
 const router = new Router();
 
-// const env = require('../environment/environment');
-// const { Pool, Client } = require('pg');
-//
-// const client = new Client(env.db);
-// await client.connect();
-
 //========================
 // GUIDELINES FOR USERS TABLE DATA
 //========================
@@ -24,13 +18,6 @@ const router = new Router();
 router.get('/', async (req, res, next) => {
   const { rows } = await db.query('SELECT * FROM users WHERE username = $1', ['postmantest']);
   res.send(rows);
-  // const query = {
-  //   text: 'SELECT * FROM users'
-  // };
-  // const data = await client.query(query)
-  //   .then(res => res.rows)
-  //   .catch(e => console.error(e.stack));
-  // res.send(data);
 });
 
 /* CREATE a new user */
@@ -49,7 +36,6 @@ router.post('/', async (req, res, next) => {
     .catch(e => console.error(e.stack));
   console.log(data);
   res.send(`You created a user with the username ${username}`);
-  // res.send(`you added ${username} to the database`);
 });
 
 // export our router to be mounted by the parent application

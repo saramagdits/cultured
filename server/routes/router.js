@@ -6,7 +6,7 @@ const ingredients = require('./ingredients');
 module.exports = (app) => {
   app.use('/', index);
   app.use('/users', users);
-  // app.use('/recipes', recipes);
+  app.use('/recipes', recipes);
   // app.use('/ingredients', ingredients);
   // etc..
 };

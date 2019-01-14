@@ -1,23 +1,16 @@
 const Router = require('express-promise-router');
-const db = require('../db');
+const users = require('../services/users-service');
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
 // it allows you to use async functions as route handlers
 const router = new Router();
 
-//========================
-// GUIDELINES FOR USERS TABLE DATA
-//========================
-// Table requires the following columns and data types
-// 1. username: character(255)
-// 2. date_created: timestamp with timezone eg. 2018-10-19 10:23:54+02
-// 3. avatar_path: text. Should be added by multer, and if successfully added, return file path to be entered in table
-
 /* GET users listing. */
 router.get('/', async (req, res, next) => {
-  const { rows } = await db.query('SELECT * FROM users WHERE username = $1', ['postmantest']);
-  res.send(rows);
+  const data = await users.getUsers();
+  // const { rows } = await db.query('SELECT * FROM users WHERE username = $1', ['postmantest']);
+  res.send(data);
 });
 
 /* CREATE a new user */

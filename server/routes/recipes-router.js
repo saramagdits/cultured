@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
   res.send(rows);
 });
 
-/* CREATE a new user */
+/* CREATE a new recipe */
 router.post('/', async (req, res, next) => {
   // TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
   // TODO author must come from passport session data?

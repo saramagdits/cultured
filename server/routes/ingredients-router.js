@@ -1,22 +1,16 @@
 const Router = require('express-promise-router');
-const db = require('../db');
+const ingredients = require('../services/ingredients-service');
 
 // create a new express-promise-router
 // this has the same API as the normal express router except
 // it allows you to use async functions as route handlers
 const router = new Router();
 
-//========================
-// GUIDELINES FOR INGREDIENTS TABLE DATA
-//========================
-// Table requires the following columns and data types
-// 1. description: text
-// 2. image_path: text
-
 /* GET ingredients listing. */
 router.get('/', async (req, res, next) => {
-  const { rows } = await db.query('SELECT * FROM ingredients');
-  res.send(rows);
+  // const { rows } = await db.query('SELECT * FROM ingredients');
+  const data  = await ingredients.getIngredients();
+  res.send(data);
 });
 
 /* CREATE a new ingredient */

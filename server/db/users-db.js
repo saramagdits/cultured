@@ -5,23 +5,44 @@ const Users = {};
 // GUIDELINES FOR USERS TABLE DATA
 //========================
 // Table requires the following columns and data types
-// 1. username: character(255)
-// 2. date_created: timestamp with timezone eg. 2018-10-19 10:23:54+02
-// 3. avatar_path: text. Should be added by multer, and if successfully added, return file path to be entered in table
+// 1. id: [PK] serial (automatically incremented)
+// 2. username: character(255)
+// 3. date_created: timestamp with timezone eg. 2018-10-19 10:23:54+02
+// 4. avatar_path: text. Should be added by multer, and if successfully added, return file path to be entered in table
 
-// SELECT rows for all users
-Users.getUsersData = () => {
-  return db.query('SELECT * FROM users WHERE username = $1', ['postmantest']);
+/* SELECT rows for all users */
+Users.getAllUsersData = async () => {
+  return await db.query('SELECT * FROM users')
+    .then(res => res.rows)
+    .catch(e => console.error(e.stack));
 };
 
-// INSERT row for new user
+/* INSERT row for new user and return that new row*/
 Users.createUserData = async (queryValues) => {
   const query = {
-    text: 'INSERT INTO users(username, date_created, avatar_path) VALUES($1, $2, $3)',
+    text: 'INSERT INTO users(username, date_created, avatar_path) VALUES($1, $2, $3) RETURNING *',
     values: [queryValues.username, queryValues.dateCreated, queryValues.avatarPath]
   };
-  return { data } = await db.query(query)
-    .then(res => res)
+  return await db.query(query)
+    .then(res => res.rows[0])
+    .catch(e => console.error(e.stack));
+};
+
+/* SELECT row for single user */
+Users.getSingleUserData = async (id) => {
+  return db.query(`SELECT * FROM users WHERE id = ${id}`)
+    .then((res) => res.rows[0])
+    .catch(e => console.error(e.stack));
+};
+
+/* UPDATE row for single user and return that new row*/
+Users.updateSingleUserData = async (id, queryValues) => {
+  const query = {
+    text: 'UPDATE users SET avatar_path = $2 WHERE id = $1 RETURNING *',
+    values: [id, queryValues.avatarPath]
+  };
+  return db.query(query)
+    .then(res => res.rows[0])
     .catch(e => console.error(e.stack));
 };
 module.exports = Users;

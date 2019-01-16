@@ -1,14 +1,18 @@
-const db = require('../db/recipes-db');
+const recipesDB = require('../db/recipes-db');
+const ingredientsDB = require('../db/ingredients-db');
 const Recipes = {};
 
-// GET all users
+// GET all recipes
 Recipes.getAllRecipes = () => {
   return db.getAllRecipesData();
 };
 
-// CREATE a new user
-Recipes.createNewRecipe = (queryValues) => {
-  return db.createNewRecipeData(queryValues);
+// CREATE a new recipe
+Recipes.createNewRecipe = async (queryValues, ingredients) => {
+  const recipeId = await recipesDB.createNewRecipeData(queryValues);
+  const ingredientsIds = await ingredientsDB.createNewIngredientsData(ingredients);
+  const newRecipe = await recipesDB.updateRelationalTable(recipeId, ingredientsIds);
+  console.log(newRecipe);
 };
 
 

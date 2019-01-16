@@ -30,7 +30,7 @@ Users.createUserData = async (queryValues) => {
 
 /* SELECT row for single user */
 Users.getSingleUserData = async (id) => {
-  return db.query(`SELECT * FROM users WHERE id = ${id}`)
+  return await db.query(`SELECT * FROM users WHERE id = ${id}`)
     .then((res) => res.rows[0])
     .catch(e => console.error(e.stack));
 };
@@ -41,7 +41,7 @@ Users.updateSingleUserData = async (id, queryValues) => {
     text: 'UPDATE users SET avatar_path = $2 WHERE id = $1 RETURNING *',
     values: [id, queryValues.avatarPath]
   };
-  return db.query(query)
+  return await db.query(query)
     .then(res => res.rows[0])
     .catch(e => console.error(e.stack));
 };

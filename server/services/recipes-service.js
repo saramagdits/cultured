@@ -4,7 +4,7 @@ const Recipes = {};
 
 // GET all recipes
 Recipes.getAllRecipes = () => {
-  return db.getAllRecipesData();
+  return recipesDB.getAllRecipesData();
 };
 
 // CREATE a new recipe

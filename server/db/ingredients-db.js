@@ -6,9 +6,9 @@ const Ingredients = {};
 //========================
 // Table requires the following columns and data types
 // 1. description: text
-// 2. type: character (255)
+// 2. type: text
 // 3. quantity: integer
-// 4. unit: character 255
+// 4. unit: text
 
 Ingredients.getIngredientsData = () => {
   return db.query('SELECT * FROM ingredients')

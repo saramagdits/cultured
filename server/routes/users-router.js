@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
   const queryValues = {
     username: req.body.username,
     dateCreated: new Date(),
-    avatarPath: '/shared/images/avatar/default.png'
+    avatarPath: '/shared/images/avatars/default.png'
   };
 
   const data = await users.createUser(queryValues);

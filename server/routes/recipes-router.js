@@ -7,9 +7,15 @@ const recipes = require('../services/recipes-service');
 // it allows you to use async functions as route handlers
 const router = new Router();
 
-/* GET users listing. */
+/* GET recipes listing. */
 router.get('/', async (req, res, next) => {
   const data = await recipes.getAllRecipes();
+  res.send(data);
+});
+
+/* GET a single recipe listing */
+router.get('/:id', async (req, res, next) => {
+  const data = await recipes.getSingleRecipe(req.params.id);
   res.send(data);
 });
 

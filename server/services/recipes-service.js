@@ -7,12 +7,22 @@ Recipes.getAllRecipes = () => {
   return recipesDB.getAllRecipesData();
 };
 
+// GET a single recipe
+Recipes.getSingleRecipe = (recipeId) => {
+  return recipesDB.getSingleRecipeData(recipeId);
+};
+
 // CREATE a new recipe
 Recipes.createNewRecipe = async (queryValues, ingredients) => {
+  // Create the recipe data, retrieve the new id
   const recipeId = await recipesDB.createNewRecipeData(queryValues);
+  // Create the ingredient data, retrieve the new ids
   const ingredientsIds = await ingredientsDB.createNewIngredientsData(ingredients);
-  const newRecipe = await recipesDB.updateRelationalTable(recipeId, ingredientsIds);
+  // Update the relational table using both ideas
+  await recipesDB.updateRelationalTable(recipeId, ingredientsIds);
+  const newRecipe = await recipesDB.getSingleRecipeData(recipeId);
   console.log(newRecipe);
+  return newRecipe;
 };
 
 

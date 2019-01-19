@@ -18,11 +18,12 @@ Recipes.createNewRecipe = async (queryValues, ingredients) => {
   const recipeId = await recipesDB.createNewRecipeData(queryValues);
   // Create the ingredient data, retrieve the new ids
   const ingredientsIds = await ingredientsDB.createNewIngredientsData(ingredients);
+  console.log(ingredientsIds);
   // Update the relational table using both ideas
-  await recipesDB.updateRelationalTable(recipeId, ingredientsIds);
-  const newRecipe = await recipesDB.getSingleRecipeData(recipeId);
-  console.log(newRecipe);
-  return newRecipe;
+  // await recipesDB.updateRelationalTable(recipeId, ingredientsIds);
+  // const newRecipe = await recipesDB.getSingleRecipeData(recipeId);
+  // console.log(newRecipe);
+  // return newRecipe;
 };
 
 

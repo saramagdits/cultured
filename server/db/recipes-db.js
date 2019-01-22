@@ -33,33 +33,6 @@ Recipes.createNewRecipeData = async (queryValues) => {
     .catch(e => console.error(e.stack));
 };
 
-// SELECT single recipe data
-// Recipes.getSingleRecipeData = async (recipeId) => {
-//   const query = {
-//     text: 'SELECT ' +
-//       'recipes.id,' +
-//       'recipes.author,' +
-//       ' recipes.title,' +
-//       ' recipes.description,' +
-//       ' recipes.image_path,' +
-//       ' recipes.prep_time,' +
-//       ' recipes.ready_time,' +
-//       ' recipes.difficulty,' +
-//       ' recipes.times_favorited,' +
-//       ' recipes.date_created,' +
-//       ' recipes_ingredients,' +
-//       ' ingredients.type,' +
-//       ' ingredients.quantity,' +
-//       ' ingredients.unit ' +
-//       'FROM recipes INNER JOIN recipes_ingredients ON $1 = recipes_ingredients.recipe_id ' +
-//       'INNER JOIN ingredients ON recipes_ingredients.ingredient_id = ingredients.id ' +
-//       'WHERE recipes.id = $1' ,
-//     values: [recipeId]
-//   };
-//   return await db.query(query)
-//     .then(res => res.rows[0])
-//     .catch(e => console.error(e.stack));
-// };
 Recipes.getSingleRecipeData = async (recipeId) => {
   const query = {
     text: 'SELECT * from RECIPES WHERE recipes.id = $1',
@@ -69,6 +42,7 @@ Recipes.getSingleRecipeData = async (recipeId) => {
     .then(res => res.rows[0])
     .catch(e => console.error(e.stack));
 };
+
 //========================
 // GUIDELINES FOR RECIPES_INGREDIENTS TABLE DATA
 //========================

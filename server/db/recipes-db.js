@@ -67,13 +67,15 @@ Recipes.getSingleRecipeData = async (recipeId) => {
 // 1. recipe_id: integer
 // 2. ingredient_id: integer
 // UPDATE recipes-ingredients relational table
-Recipes.updateRelationalTable = async (recipeId, ingredientsIds) => {
-  const query = {
-    text: 'INSERT INTO recipes_ingredients(recipe_id, ingredient_id) VALUES($1, $2) RETURNING *',
-    values: [recipeId, ingredientsIds]
-  };
-  return await db.query(query)
-    .then(res => res.rows)
-    .catch(e => console.error(e.stack));
+Recipes.updateRelationalTable = async (recipeId, ingIdArray) => {
+  return await Promise.all(ingIdArray.map( async ingId => {
+    const query = {
+      text: 'INSERT INTO recipes_ingredients(recipe_id, ingredient_id) VALUES($1, $2) RETURNING *',
+      values: [recipeId, ingId]
+    };
+    return await db.query(query)
+      .then(res => {return res.rows[0].id})
+      .catch(e => console.error(e.stack));
+  }));
 };
 module.exports = Recipes;

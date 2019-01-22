@@ -33,7 +33,6 @@ router.post('/', async (req, res, next) => {
     new Date()
   ];
   const ingredients = req.body.ingredients;
-
   const data = await recipes.createNewRecipe(queryValues, ingredients);
 
   res.send(data);

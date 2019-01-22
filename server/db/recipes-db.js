@@ -53,7 +53,7 @@ Recipes.getSingleRecipeData = async (recipeId) => {
       ' ingredients.unit ' +
       'FROM recipes INNER JOIN recipes_ingredients ON $1 = recipes_ingredients.recipe_id ' +
       'INNER JOIN ingredients ON recipes_ingredients.ingredient_id = ingredients.id ' +
-      'WHERE recipes.id = $1',
+      'WHERE recipes.id = $1' ,
     values: [recipeId]
   };
   return await db.query(query)

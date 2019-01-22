@@ -30,7 +30,7 @@ Ingredients.createNewIngredientsData = async (ingArray) => {
     //console.log(`ing is ${ing}`);
     const query = {
       text: 'INSERT into ingredients(type, quantity, unit) VALUES ($1, $2, $3) RETURNING *',
-      values: [ing, 2, 'lbs']
+      values: [ing.type, ing.quantity, ing.unit]
     };
     return await db.query(query)
       .then(res => {return res.rows[0].id})

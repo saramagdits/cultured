@@ -33,6 +33,4 @@ node_modules
 
 \.idea/
 
-./server/environment/.js
-
-./server/environment/
+/server/environment/*

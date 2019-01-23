@@ -24,8 +24,8 @@ Ingredients.createNewIngredientsData = async (ingArray) => {
   return await Promise.all(ingArray.map( async ing => {
     //console.log(`ing is ${ing}`);
     const query = {
-      text: 'INSERT into ingredients(type, quantity, unit) VALUES ($1, $2, $3) RETURNING *',
-      values: [ing.type, ing.quantity, ing.unit]
+      text: 'INSERT into ingredients(value, quantity, unit) VALUES ($1, $2, $3) RETURNING *',
+      values: [ing.value, ing.quantity, ing.unit]
     };
     return await db.query(query)
       .then(res => res.rows[0].id)

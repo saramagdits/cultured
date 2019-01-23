@@ -22,7 +22,7 @@ router.post('/', async (req, res, next) => {
   const queryValues = {
     username: req.body.username,
     dateCreated: new Date(),
-    avatarPath: '/shared/images/avatars/default.png'
+    avatarPath: '/assets/images/users/default.png'
   };
 
   const data = await users.createUser(queryValues);
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   // TODO check if avatar image has changed here
   // TODO eventually users should be able to update their password
-  const queryValues = {avatarPath: '/shared/images/avatar/updated.png'};
+  const queryValues = {avatarPath: '/assets/images/user/updated.png'};
 
   const data = await users.updateSingleUser(req.params.id, queryValues);
   res.send(data);

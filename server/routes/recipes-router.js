@@ -25,7 +25,7 @@ router.post('/', async (req, res, next) => {
     req.body.username, // TODO should come from passport
     req.body.title,
     req.body.description,
-    '/shared/images/recipes/default.png', // TODO should come from multer
+    '/assets/images/recipes/default.png', // TODO should come from multer
     req.body.prepTime,
     req.body.readyTime,
     req.body.difficulty,

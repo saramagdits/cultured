@@ -1,5 +1,6 @@
 const recipesDB = require('../db/recipes-db');
 const ingredientsDB = require('../db/ingredients-db');
+const model = require('../models/recipes-model');
 const Recipes = {};
 
 // GET all recipes

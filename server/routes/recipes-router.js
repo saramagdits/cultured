@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
   res.send(data);
 });
 
-/* GET a single recipe listing */
+/* GET a single recipe listing by recipe id*/
 router.get('/:id', async (req, res, next) => {
   const data = await recipes.getSingleRecipe(req.params.id);
   res.send(data);

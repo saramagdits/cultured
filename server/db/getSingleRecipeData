@@ -1,0 +1,5 @@
+﻿SELECT author, title, description, image_path, prep_time, ready_time, difficulty, times_favorited, date_created
+FROM recipes r
+WHERE r.id = 110
+LEFT JOIN recipes_ingredients ri ON ri.recipe_id = r.id
+LEFT JOIN ingredients i ON ri.ingredient_id = i.id

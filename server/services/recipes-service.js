@@ -10,10 +10,13 @@ Recipes.getAllRecipes = () => {
 // GET a single recipe
 Recipes.getSingleRecipe = async (recipeId) => {
   const recipeData = await recipesDB.getSingleRecipeData(recipeId);
-  const ingredientsData = await ingredientsDB.getIngredientsData(recipeId);
-  return { recipeData, ingredients: ingredientsData };
-
+  return recipeData;
 };
+// Recipes.getSingleRecipe = async (recipeId) => {
+//   const recipeData = await recipesDB.getSingleRecipeData(recipeId);
+//   const ingredientsData = await ingredientsDB.getIngredientsData(recipeId);
+//   return { recipeData, ingredients: ingredientsData };
+// };
 
 // CREATE a new recipe
 Recipes.createNewRecipe = async (queryValues, ingredients) => {

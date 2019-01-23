@@ -1,0 +1,20 @@
+﻿SELECT
+r.title,
+r.description,
+r.image_path,
+r.prep_time,
+r.ready_time,
+r.difficulty,
+r.times_favorited,
+r.date_created,
+i.value,
+i.quantity,
+i.unit,
+u.username AS author,
+u.avatar_path AS author_avatar
+FROM
+recipes r
+INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id
+INNER JOIN ingredients i ON ri.ingredient_id = i.id
+INNER JOIN users u on r.author = u.id
+WHERE r.id = 101

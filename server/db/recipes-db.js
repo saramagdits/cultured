@@ -35,11 +35,30 @@ Recipes.createNewRecipeData = async (queryValues) => {
 
 Recipes.getSingleRecipeData = async (recipeId) => {
   const query = {
-    text: 'SELECT * from RECIPES WHERE recipes.id = $1',
+    text: 'SELECT\n' +
+      'r.title,\n' +
+      'r.description,\n' +
+      'r.image_path,\n' +
+      'r.prep_time,\n' +
+      'r.ready_time,\n' +
+      'r.difficulty,\n' +
+      'r.times_favorited,\n' +
+      'r.date_created,\n' +
+      'i.value,\n' +
+      'i.quantity,\n' +
+      'i.unit,\n' +
+      'u.username AS author,\n' +
+      'u.avatar_path AS author_avatar\n' +
+      'FROM\n' +
+      'recipes r\n' +
+      'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
+      'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
+      'INNER JOIN users u on r.author = u.id\n' +
+      'WHERE r.id = $1',
     values: [recipeId]
   };
   return await db.query(query)
-    .then(res => res.rows[0])
+    .then(res => res.rows)
     .catch(e => console.error(e.stack));
 };
 

@@ -36,6 +36,7 @@ Recipes.createNewRecipeData = async (queryValues) => {
 Recipes.getSingleRecipeData = async (recipeId) => {
   const query = {
     text: 'SELECT\n' +
+      'r.id,\n'+
       'r.title,\n' +
       'r.description,\n' +
       'r.image_path,\n' +
@@ -78,5 +79,39 @@ Recipes.updateRelationalTable = async (recipeId, ingIdArray) => {
       .then(res => {return res.rows[0].id})
       .catch(e => console.error(e.stack));
   }));
+};
+
+//======================
+// Recipes Search Methods
+//======================
+Recipes.searchByTitleData = async (titles) => {
+  const query = {
+    text: 'SELECT\n' +
+      'r.id,\n'+
+      'r.title,\n' +
+      'r.description,\n' +
+      'r.image_path,\n' +
+      'r.prep_time,\n' +
+      'r.ready_time,\n' +
+      'r.difficulty,\n' +
+      'r.times_favorited,\n' +
+      'r.date_created,\n' +
+      'i.value,\n' +
+      'i.quantity,\n' +
+      'i.unit,\n' +
+      'u.username AS author,\n' +
+      'u.avatar_path AS author_avatar\n' +
+      'FROM\n' +
+      'recipes r\n' +
+      'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
+      'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
+      'INNER JOIN users u on r.author = u.id\n' +
+      // 'WHERE lower(r.title) LIKE lower($1) OR lower(r.title) LIKE lower($2)',
+      "WHERE r.title LIKE '%' || $1 || '%' OR r.title LIKE '%' || $2 || '%'",
+    values: ['simple', 'sauerkraut']
+  };
+  return await db.query(query)
+    .then(res => {return res.rows})
+    .catch(e => console.error(e.stack));
 };
 module.exports = Recipes;

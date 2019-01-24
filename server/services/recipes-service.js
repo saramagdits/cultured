@@ -33,5 +33,24 @@ Recipes.createNewRecipe = async (queryValues, ingredients) => {
   return recipesModel.single(recipeData);
 };
 
+// ==================
+// Recipe Search Methods
+// ==================
 
+// Search by title keywords. Accepts an array of titles
+Recipes.searchByTitle = async (titles) => {
+  // Request the recipes data from the db
+  const recipeData = await recipesDB.searchByTitleData(titles);
+  return recipeData;
+  // Model the data
+  // Return data to service
+};
+
+// Search by ingredients. Accepts an array of ingredients
+Recipes.searchByIngredients = (ingredients) => {
+  console.log(ingredients)
+  // Request the recipes data from the db
+  // Model the data
+  // Return data to service
+};
 module.exports = Recipes;

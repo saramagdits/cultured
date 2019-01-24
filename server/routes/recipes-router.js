@@ -13,6 +13,7 @@ const router = new Router();
 // Currently, can search by title, or ingredients, but not both
 router.get('/search', async (req, res, next) => {
   // Check if there was a title or ingredients specified
+  // TODO consider combining these to make it more flexible in accepting multiple query params
   if (req.query.title) {
     const data = await recipes.searchByTitle(req.query.title.split(' '));
     res.send(data);

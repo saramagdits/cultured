@@ -41,18 +41,15 @@ Recipes.createNewRecipe = async (queryValues, ingredients) => {
 Recipes.searchByTitle = async (titles) => {
   // Request the recipes data from the db
   const recipeData = await recipesDB.searchByTitleData(titles);
-  // Model the data
-  // Return data to service
-  return recipeData;
+  // Model the data and return it to service
+  return recipesModel.multiple(recipeData);
 };
 
 // Search by ingredients. Accepts an array of ingredients
 Recipes.searchByIngredients = async (ingredients) => {
-  console.log(ingredients);
   // Request the recipes data from the db
   const recipeData = await recipesDB.searchByIngredientsData(ingredients);
-  // Model the data
-  // Return data to service
-  return recipeData;
+  // Model the data and return it to service
+  return recipesModel.multiple(recipeData);
 };
 module.exports = Recipes;

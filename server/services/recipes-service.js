@@ -48,7 +48,6 @@ Recipes.searchByTitle = async (titles) => {
 
 // Search by ingredients. Accepts an array of ingredients
 Recipes.searchByIngredients = async (ingredients) => {
-  console.log(ingredients);
   // Request the recipes data from the db
   const recipeData = await recipesDB.searchByIngredientsData(ingredients);
   // Model the data

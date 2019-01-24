@@ -133,7 +133,6 @@ Recipes.searchByIngredientsData = async (ingredients) => {
     if (i === ingredients.length) {likeStatements += 'i.value LIKE $'+i}
     else {likeStatements += 'i.value LIKE $'+i+' OR '}
   }
-  console.log(likeStatements);
   // Select recipe IDs first, then select ingredients
   const query = {
     text: 'SELECT\n' +

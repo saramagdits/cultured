@@ -85,6 +85,9 @@ Recipes.updateRelationalTable = async (recipeId, ingIdArray) => {
 // Recipes Search Methods
 //======================
 Recipes.searchByTitleData = async (titles) => {
+  // Titles must be escaped due to a known problem with node-postgreSQL using the values as string literals 
+  // See helpful page: https://stackoverflow.com/questions/19471756/how-to-make-a-like-search-in-postgresql-and-node-js
+  const titlesEscaped = titles.map((title) => {return '%' +  title + '%'});
   const query = {
     text: 'SELECT\n' +
       'r.id,\n'+
@@ -106,9 +109,8 @@ Recipes.searchByTitleData = async (titles) => {
       'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
       'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
       'INNER JOIN users u on r.author = u.id\n' +
-      // 'WHERE lower(r.title) LIKE lower($1) OR lower(r.title) LIKE lower($2)',
-      "WHERE r.title LIKE '%' || $1 || '%' OR r.title LIKE '%' || $2 || '%'",
-    values: ['simple', 'sauerkraut']
+      "WHERE r.title LIKE $1 OR r.title LIKE $2",
+    values: titlesEscaped
   };
   return await db.query(query)
     .then(res => {return res.rows})

@@ -18,7 +18,6 @@ router.get('/', async (req, res, next) => {
 /* CREATE a new user and return all user data*/
 router.post('/', async (req, res, next) => {
   // TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
-  // TODO consider assigning a default user avatar here, to be replaced later only if one was chosen
   const queryValues = {
     username: req.body.username,
     dateCreated: new Date(),

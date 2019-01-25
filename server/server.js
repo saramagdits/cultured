@@ -1,10 +1,11 @@
 const express = require('express'),
       path = require('path'),
+      logger = require('morgan'),
       cookieParser = require('cookie-parser'),
       bodyParser = require('body-parser'),
       userAuth = require('./services/userAuth-service'),
       passport = require('passport'),
-      localStrategy = require('passport-local'),
+      LocalStrategy = require('passport-local').Strategy,
       session = require('express-session');
 
 // =======================
@@ -30,20 +31,29 @@ app.use(passport.session());
 // =======================
 // USER AUTHENTICATION
 // =======================
+// Modified from site to use promises instead of callbacks, as userAuth returns a promise
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    userAuth.findOne({ username: username }).then((err, user) => {
+  (username, password, done) => {
+    userAuth.findUser({ username: username }).then((err, user) => {
       if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
       return done(null, user);
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  userAuth.findUserById(id, function(err, user) {
+    done(err, user);
+    userAuth.findUserById(id).then((err, user) => {
+    done(err, user);
+  });
+});
 
 // =======================
 // ROUTER

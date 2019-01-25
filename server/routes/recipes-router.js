@@ -7,6 +7,24 @@ const recipes = require('../services/recipes-service');
 // it allows you to use async functions as route handlers
 const router = new Router();
 
+// =======================
+// Recipes Search Routes
+// =======================
+// Currently, can search by title, or ingredients, but not both
+router.get('/search', async (req, res, next) => {
+  // Check if there was a title or ingredients specified
+  // TODO consider combining these to make it more flexible in accepting multiple query params
+  if (req.query.title) {
+    const data = await recipes.searchByTitle(req.query.title.split(' '));
+    res.send(data);
+  } else if (req.query.ing) {
+    const data = await recipes.searchByIngredients(req.query.ing.split(' '));
+    res.send(data);
+  } else {res.send('idk man you messed up')}
+
+
+});
+
 /* GET recipes listing. */
 router.get('/', async (req, res, next) => {
   const data = await recipes.getAllRecipes();
@@ -37,6 +55,7 @@ router.post('/', async (req, res, next) => {
 
   res.send(data);
 });
+
 
 // export our router to be mounted by the parent application
 module.exports = router;

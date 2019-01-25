@@ -36,6 +36,7 @@ Recipes.createNewRecipeData = async (queryValues) => {
 Recipes.getSingleRecipeData = async (recipeId) => {
   const query = {
     text: 'SELECT\n' +
+      'r.id,\n'+
       'r.title,\n' +
       'r.description,\n' +
       'r.image_path,\n' +
@@ -78,5 +79,92 @@ Recipes.updateRelationalTable = async (recipeId, ingIdArray) => {
       .then(res => {return res.rows[0].id})
       .catch(e => console.error(e.stack));
   }));
+};
+
+//======================
+// Recipes Search Methods
+//======================
+Recipes.searchByTitleData = async (titles) => {
+  // Titles must be escaped due to a known problem with node-postgreSQL using the values as string literals
+  // See helpful page: https://stackoverflow.com/questions/19471756/how-to-make-a-like-search-in-postgresql-and-node-js
+  const titlesEscaped = titles.map((title) => {return '%' +  title + '%'});
+  let likeStatements = '';
+  for (let i=1; i<titles.length+1; i++){
+    if (i === titles.length) {likeStatements += 'r.title LIKE $'+i}
+    else {likeStatements += 'r.title LIKE $'+i+' OR '}
+  }
+  console.log(likeStatements);
+  const query = {
+    text: 'SELECT\n' +
+      'r.id,\n'+
+      'r.title,\n' +
+      'r.description,\n' +
+      'r.image_path,\n' +
+      'r.prep_time,\n' +
+      'r.ready_time,\n' +
+      'r.difficulty,\n' +
+      'r.times_favorited,\n' +
+      'r.date_created,\n' +
+      'i.value,\n' +
+      'i.quantity,\n' +
+      'i.unit,\n' +
+      'u.username AS author,\n' +
+      'u.avatar_path AS author_avatar\n' +
+      'FROM\n' +
+      'recipes r\n' +
+      'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
+      'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
+      'INNER JOIN users u on r.author = u.id\n' +
+      'WHERE '+ likeStatements,
+    values: titlesEscaped
+  };
+  return await db.query(query)
+    .then(res => {return res.rows})
+    .catch(e => console.error(e.stack));
+};
+
+// Search for recipes by ingredient
+Recipes.searchByIngredientsData = async (ingredients) => {
+  // Titles must be escaped due to a known problem with node-postgreSQL using the values as string literals
+  // See helpful page: https://stackoverflow.com/questions/19471756/how-to-make-a-like-search-in-postgresql-and-node-js
+  const ingredientsEscaped = ingredients.map((ing) => {return '%' +  ing + '%'});
+  let likeStatements = '';
+  for (let i=1; i<ingredients.length+1; i++){
+    if (i === ingredients.length) {likeStatements += 'i.value LIKE $'+i}
+    else {likeStatements += 'i.value LIKE $'+i+' OR '}
+  }
+  // Select recipe IDs first, then select ingredients
+  const query = {
+    text: 'SELECT\n' +
+      'r.id,\n'+
+      'r.title,\n' +
+      'r.description,\n' +
+      'r.image_path,\n' +
+      'r.prep_time,\n' +
+      'r.ready_time,\n' +
+      'r.difficulty,\n' +
+      'r.times_favorited,\n' +
+      'r.date_created,\n' +
+      'i.value,\n' +
+      'i.quantity,\n' +
+      'i.unit,\n' +
+      'u.username AS author,\n' +
+      'u.avatar_path AS author_avatar\n' +
+      'FROM\n' +
+      'recipes r\n' +
+      'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
+      'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
+      'INNER JOIN users u on r.author = u.id\n' +
+      'WHERE r.id IN(\n' +
+        'SELECT r.id\n' +
+        'FROM recipes r\n' +
+        'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
+        'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
+        'WHERE ' + likeStatements + ')',
+    values: ingredientsEscaped
+  };
+  return await db.query(query)
+    .then(res => {return res.rows})
+    .catch(e => console.error(e.stack));
 };
 module.exports = Recipes;

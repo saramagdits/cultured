@@ -34,12 +34,12 @@ app.use(passport.session());
 // Modified from site to use promises instead of callbacks, as userAuth returns a promise
 passport.use(new LocalStrategy(
   (username, password, done) => {
-    userAuth.findUser({ username: username }).then((err, user) => {
-      if (err) { return done(err); }
+    userAuth.findUser({ username: username }).then((user) => {
+      // if (err) { return done(err); }
       if (!user) { return done(null, false); }
       if (!user.verifyPassword(password)) { return done(null, false); }
       return done(null, user);
-    });
+    }).catch((err) => {return done(err)});
   }
 ));
 
@@ -48,8 +48,6 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  userAuth.findUserById(id, function(err, user) {
-    done(err, user);
     userAuth.findUserById(id).then((err, user) => {
     done(err, user);
   });

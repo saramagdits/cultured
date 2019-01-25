@@ -2,7 +2,7 @@ const db = require('../db/userAuth-db');
 const UserAuth = {};
 UserAuth.findUser = async (userInfo) => {
   const userExists = await db.findOneData(userInfo.username);
-  if (userExists) {return {err: null, user:userExists}}
+  if (userExists) {return userExists}
   else {return {err: true, user: null}}
 };
 UserAuth.findUserById = async (userId) => {

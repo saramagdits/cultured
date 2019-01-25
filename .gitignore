@@ -34,3 +34,5 @@ node_modules
 \.idea/
 
 server/environment/
+
+server/db/searchByIngredients\.sql

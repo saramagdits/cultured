@@ -1,7 +1,7 @@
 const db = require('./index');
 const UserAuthDB = {};
 
-UserAuthDB.findOneData = async (username) => {
+UserAuthDB.findUserData = async (username) => {
   const query = {
     text: 'SELECT * FROM users WHERE username = $1',
     values: [username]

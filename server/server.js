@@ -37,7 +37,7 @@ passport.use(new LocalStrategy(
     userAuth.findUser({ username: username }).then((user) => {
       // if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      if (!userAuth.verifyPassword(user, password)) { return done(null, false); }
+      if (!userAuth.verifyPassword(password, user.password)) { return done(null, false); }
       return done(null, user);
     }).catch((err) => {return done(err)});
   }

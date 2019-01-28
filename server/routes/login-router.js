@@ -7,10 +7,16 @@ const passport = require('passport');
 const router = new Router();
 
 /* Authenticate a user login */
+// router.post('/',
+//   passport.authenticate('local', { successRedirect: '/',
+//     failureRedirect: '/login',
+//     failureFlash: true })
+// );
 router.post('/',
-  passport.authenticate('local', { successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true })
+  passport.authenticate('local'),(req, res) => {
+  // is trying to send the user from the previous session
+  res.send(req.user || '404')
+}
 );
 
 // export our router to be mounted by the parent application

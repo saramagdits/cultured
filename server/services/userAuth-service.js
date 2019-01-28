@@ -7,7 +7,7 @@ const saltRounds = 10;
 
 const UserAuth = {};
 UserAuth.findUser = async (userInfo) => {
-  const userExists = await db.findOneData(userInfo.username);
+  const userExists = await db.findUserData(userInfo.username);
   return (userExists ? userExists : null);
 };
 UserAuth.findUserById = async (userId) => {
@@ -18,7 +18,9 @@ UserAuth.findUserById = async (userId) => {
 UserAuth.hashPassword = async (password) => {
   return await bcrypt.hash(password, saltRounds).then((hash) => hash);
 };
-UserAuth.verifyPassword = (user, password) => {
-
+UserAuth.verifyPassword = (plainPassword, passwordHash) => {
+  return bcrypt.compare(plainPassword, passwordHash)
+    .then((res) => res)
+    .catch(e => console.error(e));
 };
 module.exports = UserAuth;

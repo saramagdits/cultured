@@ -12,7 +12,7 @@ const Users = {};
 
 /* SELECT rows for all users */
 Users.getAllUsersData = async () => {
-  return await db.query('SELECT * FROM users')
+  return await db.query('SELECT id, username, date_created, avatar_path FROM users')
     .then(res => res.rows)
     .catch(e => console.error(e.stack));
 };
@@ -30,7 +30,7 @@ Users.createUserData = async (queryValues) => {
 
 /* SELECT row for single user */
 Users.getSingleUserData = async (id) => {
-  return await db.query(`SELECT * FROM users WHERE id = ${id}`)
+  return await db.query(`SELECT id, username, date_created, avatar_path FROM users WHERE id = ${id}`)
     .then((res) => res.rows[0])
     .catch(e => console.error(e.stack));
 };

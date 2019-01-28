@@ -20,10 +20,10 @@ router.post('/', async (req, res, next) => {
   // TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
   const queryValues = {
     username: req.body.username,
+    password: req.body.password,
     dateCreated: new Date(),
     avatarPath: '/assets/images/users/default.png'
   };
-
   const data = await users.createUser(queryValues);
   res.send(data);
 });

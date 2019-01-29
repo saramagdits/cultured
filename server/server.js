@@ -34,10 +34,10 @@ app.use(passport.initialize());
 // Modified from site to use promises instead of callbacks, as userAuth returns a promise
 passport.use(new Strategy.BasicStrategy(
   (username, password, done) => {
-    userAuth.findUser({ username: username }).then((user) => {
+    userAuth.findUser({ username: username }).then(async (user) => {
       // if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      if (!userAuth.verifyPassword(password, user.password)) { return done(null, false); }
+      if (! await userAuth.verifyPassword(password, user.password)) { return done(null, false); }
       return done(null, user);
     }).catch((err) => {return done(err)});
   }

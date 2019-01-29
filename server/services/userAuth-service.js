@@ -18,8 +18,8 @@ UserAuth.findUserById = async (userId) => {
 UserAuth.hashPassword = async (password) => {
   return await bcrypt.hash(password, saltRounds).then((hash) => hash);
 };
-UserAuth.verifyPassword = (plainPassword, passwordHash) => {
-  return bcrypt.compare(plainPassword, passwordHash)
+UserAuth.verifyPassword = async (plainPassword, passwordHash) => {
+  return await bcrypt.compare(plainPassword, passwordHash)
     .then((res) => res)
     .catch(e => console.error(e));
 };

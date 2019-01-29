@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 /* CREATE a new user and return all user data*/
+// TODO user should not be logged in here
 router.post('/', async (req, res) => {
   // TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
   const queryValues = {
@@ -37,6 +38,7 @@ router.get('/:id', async (req, res) => {
   res.send(data);
 });
 /* UPDATE a user's data and returns it*/
+// TODO add authentication here
 router.put('/:id', async (req, res) => {
   // TODO check if avatar image has changed here
   // TODO eventually users should be able to update their password

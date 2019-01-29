@@ -25,7 +25,6 @@ Users.getSingleUser = async (id) => {
   return userModel.single(data);
 };
 
-// TODO make this
 // UPDATE a single user's data and return it
 Users.updateSingleUser = (id, queryValues) => {
   return db.updateSingleUserData(id, queryValues);

@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
 /* CREATE a new recipe */
 router.post('/', passport.authenticate('basic', {session: false}), async (req, res) => {
   const queryValues = [
-    req.user.id, // TODO should come from passport
+    req.user.id,
     req.body.title,
     req.body.description,
     '/assets/images/recipes/default.png', // TODO should come from multer

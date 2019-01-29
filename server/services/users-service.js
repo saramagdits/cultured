@@ -16,7 +16,7 @@ Users.createUser = async (queryValues) => {
   // Hash the password before storing it
   queryValues.password = await userAuth.hashPassword(queryValues.password);
   const data = await db.createUserData(queryValues);
-  return userModel.singleNew(data);
+  return userModel.single(data);
 };
 
 // GET a single user by id

@@ -39,7 +39,6 @@ router.get('/:id', async (req, res) => {
 });
 
 /* CREATE a new recipe */
-// TODO add authentication here
 router.post('/', passport.authenticate('basic', {session: false}), async (req, res) => {
   const queryValues = [
     req.user.id, // TODO should come from passport

@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
 // TODO add authentication here
 router.post('/', passport.authenticate('basic', {session: false}), async (req, res) => {
   const queryValues = [
-    req.user.username, // TODO should come from passport
+    req.user.id, // TODO should come from passport
     req.body.title,
     req.body.description,
     '/assets/images/recipes/default.png', // TODO should come from multer

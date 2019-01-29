@@ -1,7 +1,9 @@
 const db = require('../db/users-db');
 const userAuth = require('../services/userAuth-service');
 const userModel = require('../models/user-model');
+
 const Users = {};
+
 // GET all users
 Users.getAllUsers = async () => {
   const data = await db.getAllUsersData();

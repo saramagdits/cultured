@@ -19,17 +19,24 @@ router.get('/', async (req, res) => {
 /* CREATE a new user and return all user data*/
 // TODO user should not be logged in here
 router.post('/', async (req, res) => {
-  // TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
-  const queryValues = {
-    username: req.body.username,
-    password: req.body.password,
-    dateCreated: new Date(),
-    avatarPath: '/assets/images/users/default.png'
-  };
-  // TODO check if user already exists before creating it
-  const data = await users.createUser(queryValues);
-  res.send(data);
+  // Make sure the user isn't logged in before creating a new account
+  if (!req.headers.authorization) {
+    //TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
+    const queryValues = {
+      username: req.body.username,
+      password: req.body.password,
+      dateCreated: new Date(),
+      avatarPath: '/assets/images/users/default.png'
+    };
+    // TODO check if user already exists before creating it
+    // Create the new user
+    const newUser = await users.createUser(queryValues);
+    res.json(newUser);
+  } else {
+    return res.status(400).send('You must be logged out to create a new user.');
+  }
 });
+
 
 // ===========================
 // /users/:id routes

@@ -1,5 +1,6 @@
 const Router = require('express-promise-router');
 const recipes = require('../services/recipes-service');
+const passport = require('passport');
 
 
 // create a new express-promise-router
@@ -39,9 +40,9 @@ router.get('/:id', async (req, res) => {
 
 /* CREATE a new recipe */
 // TODO add authentication here
-router.post('/', async (req, res) => {
+router.post('/', passport.authenticate('basic', {session: false}), async (req, res) => {
   const queryValues = [
-    req.body.username, // TODO should come from passport
+    req.user.id, // TODO should come from passport
     req.body.title,
     req.body.description,
     '/assets/images/recipes/default.png', // TODO should come from multer

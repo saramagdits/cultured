@@ -13,11 +13,6 @@ Recipes.getSingleRecipe = async (recipeId) => {
   const recipeData = await recipesDB.getSingleRecipeData(recipeId);
   return recipesModel.single(recipeData);
 };
-// Recipes.getSingleRecipe = async (recipeId) => {
-//   const recipeData = await recipesDB.getSingleRecipeData(recipeId);
-//   const ingredientsData = await ingredientsDB.getIngredientsData(recipeId);
-//   return { recipeData, ingredients: ingredientsData };
-// };
 
 // CREATE a new recipe
 Recipes.createNewRecipe = async (queryValues, ingredients) => {

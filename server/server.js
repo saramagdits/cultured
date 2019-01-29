@@ -4,6 +4,7 @@ const express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   userAuth = require('./services/userAuth-service'),
+  userAuthModel = require('./models/userAuth-model'),
   passport = require('passport'),
   Strategy = require('passport-http');
 
@@ -38,7 +39,7 @@ passport.use(new Strategy.BasicStrategy(
       if (!await userAuth.verifyPassword(password, user.password)) {
         return done(null, false);
       }
-      return done(null, user);
+      return done(null, userAuthModel.single(user));
     }).catch((err) => {
       return done(err)
     });

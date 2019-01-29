@@ -10,20 +10,21 @@ const router = new Router();
 // /users routes
 // ===========================
 /* GET all users data */
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
   const data = await users.getAllUsers();
   res.send(data);
 });
 
 /* CREATE a new user and return all user data*/
-router.post('/', async (req, res, next) => {
+// TODO user should not be logged in here
+router.post('/', async (req, res) => {
   // TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
   const queryValues = {
     username: req.body.username,
+    password: req.body.password,
     dateCreated: new Date(),
     avatarPath: '/assets/images/users/default.png'
   };
-
   const data = await users.createUser(queryValues);
   res.send(data);
 });
@@ -32,12 +33,13 @@ router.post('/', async (req, res, next) => {
 // /users/:id routes
 // ===========================
 /* GET user listing by id */
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res) => {
   const data = await users.getSingleUser(req.params.id);
   res.send(data);
 });
 /* UPDATE a user's data and returns it*/
-router.put('/:id', async (req, res, next) => {
+// TODO add authentication here
+router.put('/:id', async (req, res) => {
   // TODO check if avatar image has changed here
   // TODO eventually users should be able to update their password
   const queryValues = {avatarPath: '/assets/images/user/updated.png'};

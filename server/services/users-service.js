@@ -1,21 +1,31 @@
 const db = require('../db/users-db');
+const userAuth = require('../services/userAuth-service');
+const userModel = require('../models/user-model');
+
 const Users = {};
+
 // GET all users
-Users.getAllUsers = () => {
-  return db.getAllUsersData();
+Users.getAllUsers = async () => {
+  const data = await db.getAllUsersData();
+  return userModel.multiple(data);
 };
 
 // CREATE a new user and return the data
-Users.createUser = (queryValues) => {
+Users.createUser = async (queryValues) => {
   // TODO upload photo here, retrieve path to pass on to db
-  return db.createUserData(queryValues);
+  // Hash the password before storing it
+  queryValues.password = await userAuth.hashPassword(queryValues.password);
+  const data = await db.createUserData(queryValues);
+  return userModel.singleNew(data);
 };
 
 // GET a single user by id
-Users.getSingleUser = (id) => {
-  return db.getSingleUserData(id);
+Users.getSingleUser = async (id) => {
+  const data = await db.getSingleUserData(id);
+  return userModel.single(data);
 };
 
+// TODO make this
 // UPDATE a single user's data and return it
 Users.updateSingleUser = (id, queryValues) => {
   return db.updateSingleUserData(id, queryValues);

@@ -6,12 +6,11 @@ const passport = require('passport');
 // it allows you to use async functions as route handlers
 const router = new Router();
 
-/* Authenticate a user login */
 router.post('/',
-  passport.authenticate('local', { successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true })
-);
+  passport.authenticate('basic', {session: false}),
+  function (req, res) {
+    res.json(req.user);
+  });
 
 // export our router to be mounted by the parent application
 module.exports = router;

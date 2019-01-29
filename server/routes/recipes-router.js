@@ -11,7 +11,7 @@ const router = new Router();
 // Recipes Search Routes
 // =======================
 // Currently, can search by title, or ingredients, but not both
-router.get('/search', async (req, res, next) => {
+router.get('/search', async (req, res) => {
   // Check if there was a title or ingredients specified
   // TODO consider combining these to make it more flexible in accepting multiple query params
   if (req.query.title) {
@@ -26,19 +26,20 @@ router.get('/search', async (req, res, next) => {
 });
 
 /* GET recipes listing. */
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
   const data = await recipes.getAllRecipes();
   res.send(data);
 });
 
 /* GET a single recipe listing by recipe id*/
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', async (req, res) => {
   const data = await recipes.getSingleRecipe(req.params.id);
   res.send(data);
 });
 
 /* CREATE a new recipe */
-router.post('/', async (req, res, next) => {
+// TODO add authentication here
+router.post('/', async (req, res) => {
   const queryValues = [
     req.body.username, // TODO should come from passport
     req.body.title,

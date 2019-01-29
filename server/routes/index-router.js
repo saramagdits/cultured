@@ -6,7 +6,7 @@ const Router = require('express-promise-router');
 const router = new Router();
 
 /* GET index */
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 

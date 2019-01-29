@@ -13,11 +13,10 @@ const router = new Router();
 //     failureFlash: true })
 // );
 router.post('/',
-  passport.authenticate('local'),(req, res) => {
-  // is trying to send the user from the previous session
-  res.send(req.user || '404')
-}
-);
+  passport.authenticate('basic', { session: false }),
+  function(req, res) {
+    res.json(req.user);
+  });
 
 // export our router to be mounted by the parent application
 module.exports = router;

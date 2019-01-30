@@ -36,3 +36,5 @@ node_modules
 server/environment/
 
 server/db/searchByIngredients\.sql
+
+client/src/assets/images/users/

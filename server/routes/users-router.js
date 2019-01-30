@@ -1,3 +1,4 @@
+const env = require('../environment/environment');
 const Router = require('express-promise-router');
 const users = require('../services/users-service');
 const passport = require('passport');
@@ -6,6 +7,8 @@ const passport = require('passport');
 // this has the same API as the normal express router except
 // it allows you to use async functions as route handlers
 const router = new Router();
+const multer  = require('multer');
+const upload = multer({ dest: env.upload.avatars });
 
 // ===========================
 // /users routes
@@ -17,15 +20,16 @@ router.get('/', async (req, res) => {
 });
 
 /* CREATE a new user and return all user data*/
-router.post('/', async (req, res) => {
+router.post('/', upload.single('avatar'), async (req, res) => {
   // Make sure the user isn't logged in before creating a new account
+  const file = req.file;
   if (!req.headers.authorization) {
     //TODO must accept an image to be parsed by multi-part form parser (multer?), which should return the path to be inserted as avatarPath
     const queryValues = {
       username: req.body.username,
       password: req.body.password,
       dateCreated: new Date(),
-      avatarPath: '/assets/images/users/default.png'
+      avatarPath: req.file.filename
     };
     // Create the new user
     const newUser = await users.createUser(queryValues);

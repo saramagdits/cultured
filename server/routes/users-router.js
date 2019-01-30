@@ -30,7 +30,7 @@ const checkHeaders = (req, res, next) => {
 /* GET all users data */
 router.get('/', async (req, res) => {
   const data = await users.getAllUsers();
-  res.send(data);
+  res.json(data);
 });
 
 /* CREATE a new user and return all user data*/
@@ -53,7 +53,7 @@ router.post('/', checkHeaders, upload.single('avatar'), async (req, res) => {
 /* GET user listing by id */
 router.get('/:id', async (req, res) => {
   const data = await users.getSingleUser(req.params.id);
-  res.send(data);
+  res.json(data);
 });
 /* UPDATE a user's data and returns it*/
 router.put('/:id', passport.authenticate('basic', {session: false}), async (req, res) => {
@@ -63,9 +63,9 @@ router.put('/:id', passport.authenticate('basic', {session: false}), async (req,
     const queryValues = {avatarPath: '/assets/images/user/updated.png'};
 
     const data = await users.updateSingleUser(req.params.id, queryValues);
-    res.send(data);
+    res.json(data);
   } else {
-    res.sendStatus(401)
+    res.status(401).send('You don\'t have permission to do that.');
   }
 
 });

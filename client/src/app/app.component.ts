@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Cultured!';
+  isChecked = true;
+  onChange ($event) { console.log('yay'); }
 }

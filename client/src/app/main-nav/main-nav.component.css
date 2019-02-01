@@ -15,3 +15,16 @@
   top: 0;
   z-index: 1;
 }
+
+.spacer {
+  /* This fills the remaining space, by using flexbox.
+	 Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+mat-toolbar a {
+  margin: 0 10px;
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+}

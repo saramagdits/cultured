@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/cultured-theme.scss",
               "src/styles.css"
             ],
             "scripts": []

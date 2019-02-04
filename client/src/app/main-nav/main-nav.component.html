@@ -5,9 +5,15 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <!--Search bar here-->
+      <a mat-list-item href="#">Veggies</a>
+      <a mat-list-item href="#">Fruits</a>
+      <a mat-list-item href="#">Legumes</a>
+      <a mat-list-item href="#">Grains</a>
+      <a mat-list-item href="#">Dairy</a>
+      <a mat-list-item href="#">Soft Drinks</a>
+      <a mat-list-item href="#">Vinegar</a>
+      <a mat-list-item href="#">Alcohol</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -21,6 +27,12 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Cultured</span>
+        <a routerLink="/heroes" routerLinkActive="active" mat-list-item>Recipes</a>
+        <a routerLink="/heroes" routerLinkActive="active" mat-list-item>Ingredients</a>
+        <a routerLink="/heroes" routerLinkActive="active" mat-list-item>Create Recipe</a>
+        <span class='spacer'></span>
+        <a routerLink="/heroes" routerLinkActive="active" mat-list-item>My Recipes</a>
+        <a routerLink="/heroes" routerLinkActive="active" mat-list-item>Profile</a>
     </mat-toolbar>
     <!-- Add Content Here -->
     <ng-content></ng-content>

@@ -22,6 +22,8 @@ import { CurrentUserProfileEditComponent } from './users/current-user-profile-ed
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { SplashComponent } from './splash/splash.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { UsersComponent } from './users/users.component';
 
 
 @NgModule({
@@ -41,7 +43,9 @@ import { SplashComponent } from './splash/splash.component';
     CurrentUserProfileEditComponent,
     LoginComponent,
     RegisterComponent,
-    SplashComponent
+    SplashComponent,
+    RecipesComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

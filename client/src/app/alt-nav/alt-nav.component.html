@@ -1,0 +1,19 @@
+
+<mat-toolbar color="primary">
+      <!--<button-->
+        <!--type="button"-->
+        <!--aria-label="Toggle sidenav"-->
+        <!--mat-icon-button-->
+        <!--(click)="drawer.toggle()"-->
+        <!--*ngIf="isHandset$ | async">-->
+        <!--<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>-->
+      <!--</button>-->
+      <span><a routerLink="/">Cultured</a></span>
+      <a routerLink="/recipes" routerLinkActive="active" mat-list-item>Recipes</a>
+      <a routerLink="/recipes/create" routerLinkActive="active" mat-list-item>Create Recipe</a>
+      <span class='spacer'></span>
+      <a routerLink="/recipes/self" routerLinkActive="active" mat-list-item>My Recipes</a>
+      <a routerLink="/users/self" routerLinkActive="active" mat-list-item>Profile</a>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <ng-content></ng-content>

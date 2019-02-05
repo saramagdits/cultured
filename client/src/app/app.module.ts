@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import { SplashComponent } from './splash/splash.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { UsersComponent } from './users/users.component';
+import { AltNavComponent } from './alt-nav/alt-nav.component';
 
 
 @NgModule({
@@ -45,11 +46,11 @@ import { UsersComponent } from './users/users.component';
     RegisterComponent,
     SplashComponent,
     RecipesComponent,
-    UsersComponent
+    UsersComponent,
+    AltNavComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
     LayoutModule,
@@ -58,6 +59,7 @@ import { UsersComponent } from './users/users.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

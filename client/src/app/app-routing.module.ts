@@ -25,45 +25,50 @@ const routes: Routes = [
     component: RecipesComponent,
     data: { title: 'Heroes List' },
     children: [
-      { path: '',
-      component: HomeComponent,
-      data: { title: 'Heroes List' }
-      },
       { path: 'self',
-      component: CurrentUserRecipesComponent,
-      data: { title: 'Heroes List' }
+        component: CurrentUserRecipesComponent,
+        data: { title: 'Heroes List' }
       },
       { path: 'search',
-      component: RecipesSearchComponent,
-      data: { title: 'Heroes List' }
-      },
-      { path: 'browse/:category',
-      component: RecipesCategoryComponent
-      },
-      { path: 'browse/:category/:sub-category',
-      component: RecipesCategoryComponent,
-      data: { title: 'Heroes List' }
+        component: RecipesSearchComponent,
+        data: { title: 'Heroes List' }
       },
       { path: 'create',
-      component: CreateRecipeComponent,
-      data: { title: 'Heroes List' }
-      },
-      { path: ':id',
-        component: SingleRecipeComponent,
+        component: CreateRecipeComponent,
         data: { title: 'Heroes List' }
+      },
+      { path: 'browse/:category/:sub-category',
+        component: RecipesCategoryComponent,
+        data: { title: 'Heroes List' }
+      },
+      { path: 'browse/:category',
+        component: RecipesCategoryComponent
       },
       { path: ':id/edit',
         component: EditRecipeComponent,
         data: { title: 'Heroes List' }
       },
+      { path: ':id',
+        component: SingleRecipeComponent,
+        data: { title: 'Heroes List' }
+      },
+      { path: '',
+        component: HomeComponent,
+        pathMatch: 'full',
+        data: { title: 'Heroes List' }
+      },
+      { path: '**', component: PageNotFoundComponent }
     ]
   },
   { path: 'users',
     component: UsersComponent,
     data: { title: 'Heroes List' },
     children: [
-      // TODO figure out what this goes to
-      { path: '',
+      { path: 'self/edit',
+        component: CurrentUserProfileEditComponent,
+        data: { title: 'Heroes List' }
+      },
+      { path: 'self',
         component: CurrentUserProfileComponent,
         data: { title: 'Heroes List' }
       },
@@ -71,14 +76,13 @@ const routes: Routes = [
         component: UserProfileComponent,
         data: { title: 'Heroes List' }
       },
-      { path: 'self',
+      // TODO figure out what this goes to
+      { path: '',
         component: CurrentUserProfileComponent,
+        pathMatch: 'full',
         data: { title: 'Heroes List' }
       },
-      { path: 'self/edit',
-        component: CurrentUserProfileEditComponent,
-        data: { title: 'Heroes List' }
-      },
+      { path: '**', component: PageNotFoundComponent }
     ]
   },
   { path: 'login',

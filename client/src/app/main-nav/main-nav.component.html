@@ -7,11 +7,12 @@
       <img src='../../assets/images/app/temp_logo.png' alt='Temporary Jar Logo' class='sidebar-logo'>
       <a routerLink='/' class='sidebar-title'>Cultured</a>
     </mat-toolbar>
+    <!--Search bar here-->
+    <mat-toolbar>
+      <app-search-bar></app-search-bar>
+    </mat-toolbar>
     <mat-toolbar>Categories</mat-toolbar>
     <mat-nav-list>
-      <!--Search bar here-->
-      <mat-toolbar><app-search-bar></app-search-bar></mat-toolbar>
-
       <a routerLink='/recipes/browse/veggies' mat-list-item>Veggies</a>
       <a routerLink='/recipes/browse/fruits' mat-list-item>Fruits</a>
       <a routerLink='/recipes/browse/legumes' mat-list-item>Legumes</a>
@@ -41,10 +42,10 @@
       <a routerLink='/recipes' routerLinkActive='active' mat-list-item>Recipe Ideas</a>
       <span class='spacer'></span>
       <button mat-raised-button routerLink='/recipes/create' color='accent'>Create Recipe</button>
-      <button mat-icon-button [matMenuTriggerFor]="accountMenu">
+      <button mat-icon-button [matMenuTriggerFor]='accountMenu'>
         <mat-icon>account_circle</mat-icon>
       </button>
-      <mat-menu #accountMenu="matMenu">
+      <mat-menu #accountMenu='matMenu'>
         <button routerLink='/recipes/self' mat-menu-item>My Recipes</button>
         <button routerLink='/users/self' mat-menu-item>My Profile</button>
         <button routerLink='/logout' mat-menu-item>Log Out</button>

@@ -6,7 +6,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import {
+  MatToolbarModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatFormFieldModule,
+  MatInputModule
+} from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './recipes/home/home.component';
@@ -25,6 +34,9 @@ import { SplashComponent } from './splash/splash.component';
 import { RecipesComponent } from './recipes/recipes.component';
 import { UsersComponent } from './users/users.component';
 import { AltNavComponent } from './alt-nav/alt-nav.component';
+import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -47,11 +59,13 @@ import { AltNavComponent } from './alt-nav/alt-nav.component';
     SplashComponent,
     RecipesComponent,
     UsersComponent,
-    AltNavComponent
+    AltNavComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatCheckboxModule,
     LayoutModule,
     MatToolbarModule,
@@ -59,7 +73,10 @@ import { AltNavComponent } from './alt-nav/alt-nav.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     AppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

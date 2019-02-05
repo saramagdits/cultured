@@ -89,6 +89,10 @@ const routes: Routes = [
     component: LoginComponent,
     data: { title: 'Heroes List' }
   },
+  { path: 'logout',
+    redirectTo: '',
+    data: { title: 'Heroes List' }
+  },
   { path: 'register',
     component: RegisterComponent,
     data: { title: 'Heroes List' }

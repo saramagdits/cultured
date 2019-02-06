@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgModule } from '@angular/core';
@@ -36,6 +37,7 @@ import { UsersComponent } from './users/users.component';
 import { AltNavComponent } from './alt-nav/alt-nav.component';
 import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { RecipesService } from './recipes/recipes.service';
 
 
 
@@ -64,6 +66,7 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     MatCheckboxModule,
@@ -78,7 +81,7 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [RecipesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,37 +1,55 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)">
-    <mat-toolbar>Menu</mat-toolbar>
+<mat-sidenav-container class='sidenav-container'>
+  <mat-sidenav #drawer class='sidenav' fixedInViewport='true'
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]='!(isHandset$ | async)'>
+    <mat-toolbar *ngIf='!(isHandset$ | async)'>
+      <img src='../../assets/images/app/temp_logo.png' alt='Temporary Jar Logo' class='sidebar-logo'>
+      <a routerLink='/' class='sidebar-title'>Cultured</a>
+    </mat-toolbar>
+    <!--Search bar here-->
+    <mat-toolbar>
+      <app-search-bar></app-search-bar>
+    </mat-toolbar>
+    <mat-toolbar>Categories</mat-toolbar>
     <mat-nav-list>
-      <!--Search bar here-->
-      <a routerLink="/recipes/browse/veggies" mat-list-item>Veggies</a>
-      <a routerLink="/recipes/browse/fruits" mat-list-item>Fruits</a>
-      <a routerLink="/recipes/browse/legumes" mat-list-item>Legumes</a>
-      <a routerLink="/recipes/browse/grains" mat-list-item>Grains</a>
-      <a routerLink="/recipes/browse/dairy" mat-list-item>Dairy</a>
-      <a routerLink="/recipes/browse/soft-drinks" mat-list-item>Soft Drinks</a>
-      <a routerLink="/recipes/browse/vinegar" mat-list-item>Vinegar</a>
-      <a routerLink="/recipes/browse/alcohol" mat-list-item>Alcohol</a>
+      <a routerLink='/recipes/browse/veggies' mat-list-item>Veggies</a>
+      <a routerLink='/recipes/browse/fruits' mat-list-item>Fruits</a>
+      <a routerLink='/recipes/browse/legumes' mat-list-item>Legumes</a>
+      <a routerLink='/recipes/browse/grains' mat-list-item>Grains</a>
+      <a routerLink='/recipes/browse/dairy' mat-list-item>Dairy</a>
+      <a routerLink='/recipes/browse/soft-drinks' mat-list-item>Soft Drinks</a>
+      <a routerLink='/recipes/browse/vinegar' mat-list-item>Vinegar</a>
+      <a routerLink='/recipes/browse/alcohol' mat-list-item>Alcohol</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color='primary'>
       <button
-        type="button"
-        aria-label="Toggle sidenav"
+        type='button'
+        aria-label='Toggle sidenav'
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        (click)='drawer.toggle()'
+        *ngIf='isHandset$ | async'>
+        <mat-icon aria-label='Side nav toggle icon'>menu</mat-icon>
       </button>
-      <span><a routerLink="/">Cultured</a></span>
-        <a routerLink="/recipes" routerLinkActive="active" mat-list-item>Recipes</a>
-        <a routerLink="/recipes/create" routerLinkActive="active" mat-list-item>Create Recipe</a>
-        <span class='spacer'></span>
-        <a routerLink="/recipes/self" routerLinkActive="active" mat-list-item>My Recipes</a>
-        <a routerLink="/users/self" routerLinkActive="active" mat-list-item>Profile</a>
+      <span *ngIf='isHandset$ | async'>
+        <img src='../../assets/images/app/temp_logo.png' alt='Temporary Jar Logo' class='main-nav-logo'>
+      </span>
+      <span *ngIf='isHandset$ | async'>
+        <a routerLink='/'>Cultured</a>
+      </span>
+      <a routerLink='/recipes' routerLinkActive='active' mat-list-item>Recipe Ideas</a>
+      <span class='spacer'></span>
+      <button mat-raised-button routerLink='/recipes/create' color='accent'>Create Recipe</button>
+      <button mat-icon-button [matMenuTriggerFor]='accountMenu'>
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #accountMenu='matMenu'>
+        <button routerLink='/recipes/self' mat-menu-item>My Recipes</button>
+        <button routerLink='/users/self' mat-menu-item>My Profile</button>
+        <button routerLink='/logout' mat-menu-item>Log Out</button>
+      </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->
     <ng-content></ng-content>

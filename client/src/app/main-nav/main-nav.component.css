@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 250px;
 }
 
 .sidenav .mat-toolbar {
@@ -27,4 +27,21 @@ mat-toolbar a {
   display: inline-block;
   color: #fff;
   text-decoration: none;
+}
+
+.sidebar-logo {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  max-width: 15%;
+}
+.main-nav-logo {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  max-width: 25px;
+}
+
+mat-toolbar[_ngcontent-c2] a[_ngcontent-c2].sidebar-title {
+  color: black;
 }

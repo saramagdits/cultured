@@ -6,7 +6,8 @@ const express = require('express'),
   userAuth = require('./services/userAuth-service'),
   userAuthModel = require('./models/userAuth-model'),
   passport = require('passport'),
-  Strategy = require('passport-http');
+  Strategy = require('passport-http'),
+  cors = require('cors');
 
 // =======================
 // ENVIRONMENT VARIABLES
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-w
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
+app.use(cors()); // This is needed when developing locally. Recommended to remove in production
 
 // =======================
 // USER AUTHENTICATION

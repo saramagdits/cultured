@@ -8,7 +8,7 @@ import {RecipesService} from './recipes.service';
 })
 export class RecipesComponent implements OnInit {
   recipes;
-  error;
+  // error;
 
   constructor(private recipesService: RecipesService) { }
 

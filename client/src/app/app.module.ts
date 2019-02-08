@@ -38,6 +38,7 @@ import { AltNavComponent } from './alt-nav/alt-nav.component';
 import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
 import { RecipesService } from './recipes/recipes.service';
+import {UsersService} from './users/users.service';
 
 
 
@@ -81,7 +82,7 @@ import { RecipesService } from './recipes/recipes.service';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [RecipesService],
+  providers: [RecipesService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

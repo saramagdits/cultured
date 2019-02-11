@@ -27,6 +27,10 @@ export class RecipesService {
     const url = `${this.apiUrl}/recipes/${id}`;
     return this.http.get(url);
   }
+  getRecipesByCategory (category: string) {
+    const url = `${this.apiUrl}/recipes/category/${category}`;
+    return this.http.get(url);
+  }
   searchRecipesByTitle (titles: string) {
     const url = `${this.apiUrl}/recipes/search`;
     titles = titles.trim();

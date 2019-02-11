@@ -38,9 +38,11 @@ router.get('/', async (req, res) => {
 });
 
 /* GET a single recipe listing by recipe id*/
-router.get('/:id', async (req, res) => {
-  const data = await recipes.getSingleRecipe(req.params.id);
-  res.json(data);
+router.get('/:id', (req, res) => {
+  recipes.getSingleRecipe(req.params.id)
+    .then(data => res.json(data))
+    .catch(() => {res.status(400).send('Could not find that recipe.')})
+  // res.json(data);
 });
 
 /* GET recipes by category */

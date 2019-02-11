@@ -16,6 +16,11 @@ import {CurrentUserProfileEditComponent} from './users/current-user-profile-edit
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {SplashComponent} from './splash/splash.component';
+import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
+import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
+import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
+import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
+import {UserProfileResolver} from './users/user-profile/user-profile-resolver.service';
 
 // Routes are in order of most to least specific. Uses a "first-match-wins" strategy
 // The '' empty path represents the default path
@@ -26,76 +31,63 @@ const routes: Routes = [
     data: { title: 'Heroes List' },
     children: [
       { path: 'self',
-        component: CurrentUserRecipesComponent,
-        data: { title: 'Heroes List' }
+        component: CurrentUserRecipesComponent
       },
       { path: 'search',
         component: RecipesSearchComponent,
-        data: { title: 'Heroes List' }
+        resolve: {recipes: RecipesSearchResolver}
       },
       { path: 'create',
-        component: CreateRecipeComponent,
-        data: { title: 'Heroes List' }
-      },
-      { path: 'browse/:category/:sub-category',
-        component: RecipesCategoryComponent,
-        data: { title: 'Heroes List' }
+        component: CreateRecipeComponent
       },
       { path: 'browse/:category',
+        resolve: {recipes: RecipesCategoryResolver},
         component: RecipesCategoryComponent
       },
       { path: ':id/edit',
         component: EditRecipeComponent,
-        data: { title: 'Heroes List' }
+        resolve: {recipe: EditRecipeResolver}
       },
       { path: ':id',
         component: SingleRecipeComponent,
-        data: { title: 'Heroes List' }
+        resolve: {recipe: SingleRecipeResolver}
       },
       { path: '',
         component: HomeComponent,
-        pathMatch: 'full',
-        data: { title: 'Heroes List' }
+        pathMatch: 'full'
       },
       { path: '**', component: PageNotFoundComponent }
     ]
   },
   { path: 'users',
     component: UsersComponent,
-    data: { title: 'Heroes List' },
     children: [
       { path: 'self/edit',
-        component: CurrentUserProfileEditComponent,
-        data: { title: 'Heroes List' }
+        component: CurrentUserProfileEditComponent
       },
       { path: 'self',
-        component: CurrentUserProfileComponent,
-        data: { title: 'Heroes List' }
+        component: CurrentUserProfileComponent
       },
       { path: ':id',
         component: UserProfileComponent,
-        data: { title: 'Heroes List' }
+        resolve: {user: UserProfileResolver}
       },
       // TODO figure out what this goes to
       { path: '',
         component: CurrentUserProfileComponent,
-        pathMatch: 'full',
-        data: { title: 'Heroes List' }
+        pathMatch: 'full'
       },
       { path: '**', component: PageNotFoundComponent }
     ]
   },
   { path: 'login',
-    component: LoginComponent,
-    data: { title: 'Heroes List' }
+    component: LoginComponent
   },
   { path: 'logout',
-    redirectTo: '',
-    data: { title: 'Heroes List' }
+    redirectTo: ''
   },
   { path: 'register',
-    component: RegisterComponent,
-    data: { title: 'Heroes List' }
+    component: RegisterComponent
   },
   // Or Home if logged in
   { path: '',

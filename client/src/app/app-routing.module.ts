@@ -17,6 +17,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {SplashComponent} from './splash/splash.component';
 import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
+import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
 
 // Routes are in order of most to least specific. Uses a "first-match-wins" strategy
 // The '' empty path represents the default path
@@ -52,6 +53,7 @@ const routes: Routes = [
       },
       { path: ':id',
         component: SingleRecipeComponent,
+        resolve: {recipe: SingleRecipeResolver},
         data: { title: 'Heroes List' }
       },
       { path: '',

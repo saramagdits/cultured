@@ -40,6 +40,8 @@ import { FormsModule } from '@angular/forms';
 import { RecipesService } from './shared/recipes.service';
 import {UsersService} from './users/users.service';
 import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
+import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
+import {HttpErrorHandlerService} from './shared/http-error-handler.service';
 
 
 
@@ -83,7 +85,7 @@ import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-catego
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [RecipesService, UsersService, RecipesCategoryResolver],
+  providers: [RecipesService, UsersService, RecipesCategoryResolver, SingleRecipeResolver, HttpErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

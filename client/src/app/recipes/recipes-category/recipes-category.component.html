@@ -1,3 +1,4 @@
 <p>
-  you accessed the {{this.category}} category
+  you accessed the {{recipes[0].category}} category
 </p>
+<p *ngFor='let recipe of recipes'>this is recipe no. {{recipe.id}}</p>

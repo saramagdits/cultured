@@ -19,8 +19,12 @@ export class RecipesCategoryComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
     this.category = params['category'];
-    this.recipesService.getRecipesByCategory(this.category)
-      .subscribe(data => this.recipes = data, error => console.log(error));
+    // this.recipesService.getRecipesByCategory(this.category)
+    //   .subscribe(data => this.recipes = data, error => console.log(error));
   });
+    this.route.data
+      .subscribe((data: { recipes }) => {
+        this.recipes = data.recipes;
+      });
   }
 }

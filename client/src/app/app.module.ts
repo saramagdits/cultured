@@ -39,6 +39,7 @@ import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
 import { RecipesService } from './shared/recipes.service';
 import {UsersService} from './users/users.service';
+import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
 
 
 
@@ -82,7 +83,7 @@ import {UsersService} from './users/users.service';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [RecipesService, UsersService],
+  providers: [RecipesService, UsersService, RecipesCategoryResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

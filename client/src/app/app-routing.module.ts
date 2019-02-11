@@ -16,6 +16,7 @@ import {CurrentUserProfileEditComponent} from './users/current-user-profile-edit
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {SplashComponent} from './splash/splash.component';
+import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
 
 // Routes are in order of most to least specific. Uses a "first-match-wins" strategy
 // The '' empty path represents the default path
@@ -42,6 +43,7 @@ const routes: Routes = [
         data: { title: 'Heroes List' }
       },
       { path: 'browse/:category',
+        resolve: {recipes: RecipesCategoryResolver},
         component: RecipesCategoryComponent
       },
       { path: ':id/edit',

@@ -43,6 +43,14 @@ router.get('/:id', async (req, res) => {
   res.json(data);
 });
 
+/* GET recipes by category */
+router.get('/category/:category', async (req, res) => {
+  // req.params.category.replace(/\-/, ' ');
+  req.params.category = req.params.category.split('-').join(' ');
+  const data = await recipes.getRecipesByCategory(req.params.category);
+  res.json(data);
+});
+
 /* CREATE a new recipe */
 router.post('/', passport.authenticate('basic', {session: false}), upload.single('image'), async (req, res) => {
   const queryValues = [
@@ -53,6 +61,7 @@ router.post('/', passport.authenticate('basic', {session: false}), upload.single
     req.body.prepTime,
     req.body.readyTime,
     req.body.difficulty,
+    req.body.category,
     0,
     new Date()
   ];

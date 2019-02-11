@@ -11,9 +11,10 @@ const Recipes = {};
 // 4. image_path: text
 // 5. prep_time: interval eg. '3 hours 2 minutes'
 // 6. ready_time: interval eg. '1 year 2 months 3 days' ect.
-// 7. difficulty: text
-// 8. times_favorited: integer
-// 9. date_created: timestamp with timezone eg. 2018-10-19 10:23:54+02
+// 7. difficulty: text,
+// 8. category: text,
+// 9. times_favorited: integer
+// 10. date_created: timestamp with timezone eg. 2018-10-19 10:23:54+02
 
 // SELECT all recipe rows and return data
 Recipes.getAllRecipesData = async () => {
@@ -25,7 +26,7 @@ Recipes.getAllRecipesData = async () => {
 // INSERT a new recipe row
 Recipes.createNewRecipeData = async (queryValues) => {
   const query = {
-    text: 'INSERT INTO recipes(author, title, description, image_path, prep_time, ready_time, difficulty, times_favorited, date_created) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+    text: 'INSERT INTO recipes(author, title, description, category, image_path, prep_time, ready_time, difficulty, times_favorited, date_created) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
     values: queryValues
   };
   return await db.query(query)
@@ -43,6 +44,7 @@ Recipes.getSingleRecipeData = async (recipeId) => {
       'r.prep_time,\n' +
       'r.ready_time,\n' +
       'r.difficulty,\n' +
+      'r.category,\n' +
       'r.times_favorited,\n' +
       'r.date_created,\n' +
       'i.value,\n' +
@@ -60,6 +62,38 @@ Recipes.getSingleRecipeData = async (recipeId) => {
   };
   return await db.query(query)
     .then(res => res.rows)
+    .catch(e => console.error(e.stack));
+};
+
+// SELECT recipes by category
+Recipes.getRecipesByCategoryData = async (category) => {
+  const query = {
+    text: 'SELECT\n' +
+      'r.id,\n'+
+      'r.title,\n' +
+      'r.description,\n' +
+      'r.category,\n' +
+      'r.image_path,\n' +
+      'r.prep_time,\n' +
+      'r.ready_time,\n' +
+      'r.difficulty,\n' +
+      'r.times_favorited,\n' +
+      'r.date_created,\n' +
+      'i.value,\n' +
+      'i.quantity,\n' +
+      'i.unit,\n' +
+      'u.username AS author,\n' +
+      'u.avatar_path AS author_avatar\n' +
+      'FROM\n' +
+      'recipes r\n' +
+      'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
+      'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
+      'INNER JOIN users u on r.author = u.id\n' +
+      'WHERE r.category = $1',
+    values: [category]
+  };
+  return await db.query(query)
+    .then(res => {return res.rows})
     .catch(e => console.error(e.stack));
 };
 
@@ -93,12 +127,12 @@ Recipes.searchByTitleData = async (titles) => {
     if (i === titles.length) {likeStatements += 'r.title LIKE $'+i}
     else {likeStatements += 'r.title LIKE $'+i+' OR '}
   }
-  console.log(likeStatements);
   const query = {
     text: 'SELECT\n' +
       'r.id,\n'+
       'r.title,\n' +
       'r.description,\n' +
+      'r.category,\n' +
       'r.image_path,\n' +
       'r.prep_time,\n' +
       'r.ready_time,\n' +
@@ -143,6 +177,7 @@ Recipes.searchByIngredientsData = async (ingredients) => {
       'r.prep_time,\n' +
       'r.ready_time,\n' +
       'r.difficulty,\n' +
+      'r.category,\n' +
       'r.times_favorited,\n' +
       'r.date_created,\n' +
       'i.value,\n' +

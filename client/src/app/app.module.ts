@@ -37,7 +37,7 @@ import { UsersComponent } from './users/users.component';
 import { AltNavComponent } from './alt-nav/alt-nav.component';
 import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
-import { RecipesService } from './recipes/recipes.service';
+import { RecipesService } from './shared/recipes.service';
 import {UsersService} from './users/users.service';
 
 

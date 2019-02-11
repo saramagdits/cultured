@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {RecipesService} from '../../shared/recipes.service';
 
 @Component({
   selector: 'app-recipes-category',
@@ -9,15 +10,17 @@ import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 })
 export class RecipesCategoryComponent implements OnInit {
   category: string;
+  recipes: any;
   constructor(
     private route: ActivatedRoute,
-    private router: Router
-  ) {
-    this.route.params.subscribe(params => {
-      this.category = params['category'];
-    });
-  }
+    private router: Router,
+    private recipesService: RecipesService
+  ) {}
   ngOnInit() {
+    this.route.params.subscribe(params => {
+    this.category = params['category'];
+    this.recipesService.getRecipesByCategory(this.category)
+      .subscribe(data => console.log(data), error => console.log(error));
+  });
   }
-
 }

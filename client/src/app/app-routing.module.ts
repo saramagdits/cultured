@@ -19,6 +19,7 @@ import {SplashComponent} from './splash/splash.component';
 import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
 import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
 import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
+import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
 
 // Routes are in order of most to least specific. Uses a "first-match-wins" strategy
 // The '' empty path represents the default path
@@ -29,20 +30,17 @@ const routes: Routes = [
     data: { title: 'Heroes List' },
     children: [
       { path: 'self',
-        component: CurrentUserRecipesComponent,
-        data: { title: 'Heroes List' }
+        component: CurrentUserRecipesComponent
       },
       { path: 'search',
         component: RecipesSearchComponent,
-        data: { title: 'Heroes List' }
+        resolve: {recipes: RecipesSearchResolver}
       },
       { path: 'create',
-        component: CreateRecipeComponent,
-        data: { title: 'Heroes List' }
+        component: CreateRecipeComponent
       },
       { path: 'browse/:category/:sub-category',
-        component: RecipesCategoryComponent,
-        data: { title: 'Heroes List' }
+        component: RecipesCategoryComponent
       },
       { path: 'browse/:category',
         resolve: {recipes: RecipesCategoryResolver},
@@ -50,18 +48,15 @@ const routes: Routes = [
       },
       { path: ':id/edit',
         component: EditRecipeComponent,
-        resolve: {recipe: EditRecipeResolver},
-        data: { title: 'Heroes List' }
+        resolve: {recipe: EditRecipeResolver}
       },
       { path: ':id',
         component: SingleRecipeComponent,
-        resolve: {recipe: SingleRecipeResolver},
-        data: { title: 'Heroes List' }
+        resolve: {recipe: SingleRecipeResolver}
       },
       { path: '',
         component: HomeComponent,
-        pathMatch: 'full',
-        data: { title: 'Heroes List' }
+        pathMatch: 'full'
       },
       { path: '**', component: PageNotFoundComponent }
     ]

@@ -43,6 +43,7 @@ import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-catego
 import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
 import {HttpErrorHandlerService} from './shared/http-error-handler.service';
 import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
+import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
 
 
 
@@ -86,7 +87,7 @@ import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.ser
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [RecipesService, UsersService, RecipesCategoryResolver, SingleRecipeResolver, EditRecipeResolver, HttpErrorHandlerService],
+  providers: [RecipesService, UsersService, RecipesCategoryResolver, SingleRecipeResolver, EditRecipeResolver, RecipesSearchResolver, HttpErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

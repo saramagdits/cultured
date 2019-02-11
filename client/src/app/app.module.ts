@@ -38,12 +38,13 @@ import { AltNavComponent } from './alt-nav/alt-nav.component';
 import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
 import { RecipesService } from './shared/recipes.service';
-import {UsersService} from './users/users.service';
+import {UsersService} from './shared/users.service';
 import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
 import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
 import {HttpErrorHandlerService} from './shared/http-error-handler.service';
 import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
 import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
+import {UserProfileResolver} from './users/user-profile/user-profile-resolver.service';
 
 
 
@@ -87,7 +88,15 @@ import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-res
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [RecipesService, UsersService, RecipesCategoryResolver, SingleRecipeResolver, EditRecipeResolver, RecipesSearchResolver, HttpErrorHandlerService],
+  providers: [
+    RecipesService,
+    UsersService,
+    RecipesCategoryResolver,
+    SingleRecipeResolver,
+    EditRecipeResolver,
+    RecipesSearchResolver,
+    UserProfileResolver,
+    HttpErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

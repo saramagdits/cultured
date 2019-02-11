@@ -20,7 +20,7 @@ export class RecipesCategoryComponent implements OnInit {
     this.route.params.subscribe(params => {
     this.category = params['category'];
     this.recipesService.getRecipesByCategory(this.category)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => this.recipes = data, error => console.log(error));
   });
   }
 }

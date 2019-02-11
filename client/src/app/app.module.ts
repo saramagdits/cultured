@@ -42,6 +42,7 @@ import {UsersService} from './users/users.service';
 import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
 import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
 import {HttpErrorHandlerService} from './shared/http-error-handler.service';
+import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
 
 
 
@@ -85,7 +86,7 @@ import {HttpErrorHandlerService} from './shared/http-error-handler.service';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [RecipesService, UsersService, RecipesCategoryResolver, SingleRecipeResolver, HttpErrorHandlerService],
+  providers: [RecipesService, UsersService, RecipesCategoryResolver, SingleRecipeResolver, EditRecipeResolver, HttpErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

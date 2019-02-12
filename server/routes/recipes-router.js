@@ -20,14 +20,18 @@ router.get('/search', (req, res) => {
   // TODO consider combining these to make it more flexible in accepting multiple query params
   if (req.query.title) {
     recipes.searchByTitle(req.query.title.split(' '))
-      .then(data => res.json(data))
-      .catch(() => res.status(400).send('Something was wrong with your search formatting'));
+      .then(data => {
+        if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+      })
+      .catch(() => res.status(404).send('Could not find any recipes with that title.'));
   } else if (req.query.ing) {
     recipes.searchByIngredients(req.query.ing.split(' '))
-      .then(data => res.json(data))
-      .catch(() => res.status(400).send('Something was wrong with your search formatting'))
+      .then(data => {
+        if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+      })
+      .catch(() => res.status(404).send('Could not find any recipes with those ingredients.'))
   } else {
-    res.status(400).send('Something was wrong with your search formatting')
+    res.status(404).send('Could not find any recipes.')
   }
 
 
@@ -36,15 +40,19 @@ router.get('/search', (req, res) => {
 /* GET recipes listing. */
 router.get('/', (req, res) => {
   recipes.getAllRecipes()
-    .then(data => res.json(data))
-    .catch(() => {res.status(400).send('Could not find any recipes.')});
+    .then(data => {
+      if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+    })
+    .catch(() => {res.status(404).send('Could not find any recipes.')});
 });
 
 /* GET a single recipe listing by recipe id*/
 router.get('/:id', (req, res) => {
   recipes.getSingleRecipe(req.params.id)
-    .then(data => res.json(data))
-    .catch(() => {res.status(400).send('Could not find that recipe.')})
+    .then(data => {
+      if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+    })
+    .catch(() => {res.status(404).send('Could not find that recipe.')})
   // res.json(data);
 });
 
@@ -53,8 +61,10 @@ router.get('/category/:category', (req, res) => {
   // req.params.category.replace(/\-/, ' ');
   req.params.category = req.params.category.split('-').join(' ');
   recipes.getRecipesByCategory(req.params.category)
-    .then(data => res.json(data))
-    .catch(() => {res.status(400).send('Could not find any recipes by that category.')});
+    .then(data => {
+      if (data.length > 0) {res.json(data)} else {throw 'err'}
+    })
+    .catch(() => {res.status(404).send('Could not find any recipes in that category.')});
 });
 
 /* CREATE a new recipe */
@@ -73,8 +83,10 @@ router.post('/', passport.authenticate('basic', {session: false}), upload.single
   ];
   const ingredients = req.body.ingredients;
   recipes.createNewRecipe(queryValues, ingredients)
-    .then(data => res.json(data))
-    .catch(() => {res.status(400).send('Could not create that recipe.')});
+    .then(data => {
+      if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+    })
+    .catch(() => {res.status(500).send('Could not create that recipe.')});
 });
 
 

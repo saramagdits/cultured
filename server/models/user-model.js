@@ -9,16 +9,7 @@ UsersModel.single = (d) => {
     dateCreated: d.date_created
   }
 };
-//
-// UsersModel.singleNew = (d) => {
-//   return {
-//     id: d.id,
-//     username: d.username,
-//     password: d.password,
-//     avatarPath: d.avatar_path,
-//     dateCreated: d.date_created
-//   }
-// };
+
 UsersModel.multiple = (d) => {
   return d.map((row) => {
     return {

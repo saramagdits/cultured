@@ -27,25 +27,27 @@ const checkHeaders = (req, res, next) => {
 // /users routes
 // ===========================
 /* GET all users data */
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
   users.getAllUsers()
     .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
     .catch(() => res.status(404).send('Could not find any users.'));
 });
 
 /* CREATE a new user and return all user data*/
-router.post('/', checkHeaders, upload.single('avatar'), async (req, res) => {
-  // TODO check that all fields are present or throw error
-  const queryValues = {
-    username: req.body.username,
-    password: req.body.password,
-    dateCreated: new Date(),
-    avatarPath: (req.file ? req.file.filename : 'default.png')
-  };
-  // Create the new user
-  users.createUser(queryValues)
-    .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
-    .catch(() => res.status(500).send('Unable to create new user.'));
+router.post('/', checkHeaders, upload.single('avatar'), (req, res) => {
+  // Check that both a username and password were provided
+  if (req.body.username && req.body.password) {
+    const queryValues = {
+      username: req.body.username,
+      password: req.body.password,
+      dateCreated: new Date(),
+      avatarPath: (req.file ? req.file.filename : 'default.png')
+    };
+    // Create the new user
+    users.createUser(queryValues)
+      .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
+      .catch(() => res.status(500).send('Unable to create new user.'));
+  } else {res.status(400).send('Both a username and password are required')}
 });
 
 
@@ -53,26 +55,26 @@ router.post('/', checkHeaders, upload.single('avatar'), async (req, res) => {
 // /users/:id routes
 // ===========================
 /* GET user listing by id */
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
+  // Get the user listing
   users.getSingleUser(req.params.id)
     .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
     .catch(() => res.status(404).send('Couldn\'t find that user.'));
 });
 
 /* UPDATE a user's data and returns it*/
-router.put('/:id', passport.authenticate('basic', {session: false}), async (req, res) => {
+router.put('/:id', passport.authenticate('basic', {session: false}), (req, res) => {
   // Check if user exists and user id matches
   if (req.user && req.params.id === req.user.id.toString()) {
     // TODO check if avatar image has changed here
     const queryValues = {avatarPath: '/assets/images/user/updated.png'};
-
+    // Update the user
     users.updateSingleUser(req.params.id, queryValues)
       .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
       .catch(() => res.status(500).send('Unable to update the user.'));
   } else {
     res.status(401).send('You don\'t have permission to do that.');
   }
-
 });
 
 // export our router to be mounted by the parent application

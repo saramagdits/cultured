@@ -15,15 +15,17 @@ const router = new Router();
 // Recipes Search Routes
 // =======================
 // Currently, can search by title, or ingredients, but not both
-router.get('/search', async (req, res) => {
+router.get('/search', (req, res) => {
   // Check if there was a title or ingredients specified
   // TODO consider combining these to make it more flexible in accepting multiple query params
   if (req.query.title) {
-    const data = await recipes.searchByTitle(req.query.title.split(' '));
-    res.json(data);
+    recipes.searchByTitle(req.query.title.split(' '))
+      .then(data => res.json(data))
+      .catch(() => res.status(400).send('Something was wrong with your search formatting'));
   } else if (req.query.ing) {
-    const data = await recipes.searchByIngredients(req.query.ing.split(' '));
-    res.json(data);
+    recipes.searchByIngredients(req.query.ing.split(' '))
+      .then(data => res.json(data))
+      .catch(() => res.status(400).send('Something was wrong with your search formatting'))
   } else {
     res.status(400).send('Something was wrong with your search formatting')
   }

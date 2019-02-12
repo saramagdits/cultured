@@ -25,14 +25,14 @@ Users.createUserData = async (queryValues) => {
   };
   return await db.query(query)
     .then(res => res.rows[0])
-    .catch(e => console.error(e.stack));
+    .catch(e => e);
 };
 
 /* SELECT row for single user */
 Users.getSingleUserData = async (id) => {
   return await db.query(`SELECT id, username, date_created, avatar_path FROM users WHERE id = ${id}`)
     .then((res) => res.rows[0])
-    .catch(e => console.error(e.stack));
+    .catch(e => e);
 };
 
 /* UPDATE row for single user and return that new row*/
@@ -43,6 +43,6 @@ Users.updateSingleUserData = async (id, queryValues) => {
   };
   return await db.query(query)
     .then(res => res.rows[0])
-    .catch(e => console.error(e.stack));
+    .catch(e => e);
 };
 module.exports = Users;

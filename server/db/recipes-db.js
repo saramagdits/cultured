@@ -26,7 +26,7 @@ Recipes.getAllRecipesData = async () => {
 // INSERT a new recipe row
 Recipes.createNewRecipeData = async (queryValues) => {
   const query = {
-    text: 'INSERT INTO recipes(author, title, description, category, image_path, prep_time, ready_time, difficulty, times_favorited, date_created) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
+    text: 'INSERT INTO recipes(author, title, description, category, image_path, prep_time, ready_time, difficulty, times_favorited, date_created) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
     values: queryValues
   };
   return await db.query(query)
@@ -40,11 +40,11 @@ Recipes.getSingleRecipeData = async (recipeId) => {
       'r.id,\n'+
       'r.title,\n' +
       'r.description,\n' +
+      'r.category,\n' +
       'r.image_path,\n' +
       'r.prep_time,\n' +
       'r.ready_time,\n' +
       'r.difficulty,\n' +
-      'r.category,\n' +
       'r.times_favorited,\n' +
       'r.date_created,\n' +
       'i.value,\n' +

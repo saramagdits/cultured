@@ -17,7 +17,6 @@ const router = new Router();
 // Make sure that a user is not already logged in before making an account
 const checkHeaders = (req, res, next) => {
   if (!req.headers.authorization) {
-    console.log('ur good');
     next()
   } else {
     res.status(400).send('Please log out before creating a new user');
@@ -29,12 +28,14 @@ const checkHeaders = (req, res, next) => {
 // ===========================
 /* GET all users data */
 router.get('/', async (req, res) => {
-  const data = await users.getAllUsers();
-  res.json(data);
+  users.getAllUsers()
+    .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
+    .catch(() => res.status(404).send('Could not find any users.'));
 });
 
 /* CREATE a new user and return all user data*/
 router.post('/', checkHeaders, upload.single('avatar'), async (req, res) => {
+  // TODO check that all fields are present or throw error
   const queryValues = {
     username: req.body.username,
     password: req.body.password,
@@ -42,8 +43,9 @@ router.post('/', checkHeaders, upload.single('avatar'), async (req, res) => {
     avatarPath: (req.file ? req.file.filename : 'default.png')
   };
   // Create the new user
-  const newUser = await users.createUser(queryValues);
-  res.json(newUser);
+  users.createUser(queryValues)
+    .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
+    .catch(() => res.status(500).send('Unable to create new user.'));
 });
 
 
@@ -52,9 +54,11 @@ router.post('/', checkHeaders, upload.single('avatar'), async (req, res) => {
 // ===========================
 /* GET user listing by id */
 router.get('/:id', async (req, res) => {
-  const data = await users.getSingleUser(req.params.id);
-  res.json(data);
+  users.getSingleUser(req.params.id)
+    .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
+    .catch(() => res.status(404).send('Couldn\'t find that user.'));
 });
+
 /* UPDATE a user's data and returns it*/
 router.put('/:id', passport.authenticate('basic', {session: false}), async (req, res) => {
   // Check if user exists and user id matches
@@ -62,8 +66,9 @@ router.put('/:id', passport.authenticate('basic', {session: false}), async (req,
     // TODO check if avatar image has changed here
     const queryValues = {avatarPath: '/assets/images/user/updated.png'};
 
-    const data = await users.updateSingleUser(req.params.id, queryValues);
-    res.json(data);
+    users.updateSingleUser(req.params.id, queryValues)
+      .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
+      .catch(() => res.status(500).send('Unable to update the user.'));
   } else {
     res.status(401).send('You don\'t have permission to do that.');
   }

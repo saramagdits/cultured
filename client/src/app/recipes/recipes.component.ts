@@ -37,6 +37,7 @@ export class RecipesComponent implements OnInit {
       title: 'kombucha',
       description: 'fizzy and fun',
       difficulty: 'medium',
+      category: 'veggies',
       prepTime: '30 minutes',
       readyTime: '2 weeks',
       ingredients: [

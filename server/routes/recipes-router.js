@@ -32,9 +32,10 @@ router.get('/search', async (req, res) => {
 });
 
 /* GET recipes listing. */
-router.get('/', async (req, res) => {
-  const data = await recipes.getAllRecipes();
-  res.json(data);
+router.get('/', (req, res) => {
+  recipes.getAllRecipes()
+    .then(data => res.json(data))
+    .catch(() => {res.status(400).send('Could not find any recipes.')});
 });
 
 /* GET a single recipe listing by recipe id*/
@@ -46,31 +47,32 @@ router.get('/:id', (req, res) => {
 });
 
 /* GET recipes by category */
-router.get('/category/:category', async (req, res) => {
+router.get('/category/:category', (req, res) => {
   // req.params.category.replace(/\-/, ' ');
   req.params.category = req.params.category.split('-').join(' ');
-  const data = await recipes.getRecipesByCategory(req.params.category);
-  res.json(data);
+  recipes.getRecipesByCategory(req.params.category)
+    .then(data => res.json(data))
+    .catch(() => {res.status(400).send('Could not find any recipes by that category.')});
 });
 
 /* CREATE a new recipe */
-router.post('/', passport.authenticate('basic', {session: false}), upload.single('image'), async (req, res) => {
+router.post('/', passport.authenticate('basic', {session: false}), upload.single('image'), (req, res) => {
   const queryValues = [
     req.user.id,
     req.body.title,
     req.body.description,
+    req.body.category,
     (req.file ? req.file.filename : 'default.png'),
     req.body.prepTime,
     req.body.readyTime,
     req.body.difficulty,
-    req.body.category,
     0,
     new Date()
   ];
   const ingredients = req.body.ingredients;
-  const data = await recipes.createNewRecipe(queryValues, ingredients);
-
-  res.json(data);
+  recipes.createNewRecipe(queryValues, ingredients)
+    .then(data => res.json(data))
+    .catch(() => {res.status(400).send('Could not create that recipe.')});
 });
 
 

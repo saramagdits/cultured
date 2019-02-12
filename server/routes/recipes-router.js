@@ -69,24 +69,26 @@ router.get('/category/:category', (req, res) => {
 
 /* CREATE a new recipe */
 router.post('/', passport.authenticate('basic', {session: false}), upload.single('image'), (req, res) => {
-  const queryValues = [
-    req.user.id,
-    req.body.title,
-    req.body.description,
-    req.body.category,
-    (req.file ? req.file.filename : 'default.png'),
-    req.body.prepTime,
-    req.body.readyTime,
-    req.body.difficulty,
-    0,
-    new Date()
-  ];
-  const ingredients = req.body.ingredients;
-  recipes.createNewRecipe(queryValues, ingredients)
-    .then(data => {
-      if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
-    })
-    .catch(() => {res.status(500).send('Could not create that recipe.')});
+  if (req.body.title && req.body.description && req.body.category && req.body.prepTime && req.body.readyTime && req.body.ingredients) {
+    const queryValues = [
+      req.user.id,
+      req.body.title,
+      req.body.description,
+      req.body.category,
+      (req.file ? req.file.filename : 'default.png'),
+      req.body.prepTime,
+      req.body.readyTime,
+      req.body.difficulty,
+      0,
+      new Date()
+    ];
+    const ingredients = req.body.ingredients;
+    recipes.createNewRecipe(queryValues, ingredients)
+      .then(data => {
+        if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+      })
+      .catch(() => {res.status(500).send('Could not create that recipe.')});
+  } else { res.status(400).send('You are missing a required field')}
 });
 
 

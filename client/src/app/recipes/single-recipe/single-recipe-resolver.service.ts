@@ -6,7 +6,7 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 
-import {RecipesService} from '../../shared/recipes.service';
+import {RecipesService} from '../../services/recipes.service';
 
 import {Observable, of, EMPTY} from 'rxjs';
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RecipesService } from '../../shared/recipes.service';
+import { RecipesService } from '../../services/recipes.service';
 
 import { Resolve } from '@angular/router';
 

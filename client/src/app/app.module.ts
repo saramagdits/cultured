@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgModule } from '@angular/core';
@@ -36,7 +36,7 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { UsersComponent } from './users/users.component';
 import { AltNavComponent } from './alt-nav/alt-nav.component';
 import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RecipesService } from './services/recipes.service';
 import {UsersService} from './services/users.service';
 import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
@@ -87,7 +87,8 @@ import {AuthenticationService} from './services/authentication.service';
     MatMenuModule,
     AppRoutingModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     RecipesService,
@@ -98,9 +99,9 @@ import {AuthenticationService} from './services/authentication.service';
     RecipesSearchResolver,
     UserProfileResolver,
     HttpErrorHandlerService,
-    BasicAuthInterceptor,
-    ErrorInterceptor,
-    AuthenticationService
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

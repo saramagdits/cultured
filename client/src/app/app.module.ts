@@ -45,8 +45,7 @@ import {HttpErrorHandlerService} from './shared/http-error-handler.service';
 import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
 import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
 import {UserProfileResolver} from './users/user-profile/user-profile-resolver.service';
-
-
+import {BasicAuthInterceptor} from './interceptors/basic-auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -96,7 +95,9 @@ import {UserProfileResolver} from './users/user-profile/user-profile-resolver.se
     EditRecipeResolver,
     RecipesSearchResolver,
     UserProfileResolver,
-    HttpErrorHandlerService],
+    HttpErrorHandlerService,
+    BasicAuthInterceptor
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

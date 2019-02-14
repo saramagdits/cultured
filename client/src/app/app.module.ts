@@ -48,6 +48,7 @@ import {UserProfileResolver} from './users/user-profile/user-profile-resolver.se
 import {BasicAuthInterceptor} from './interceptors/basic-auth.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AuthenticationService} from './services/authentication.service';
+import {RegisterService} from './services/register.service';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {AuthenticationService} from './services/authentication.service';
   providers: [
     RecipesService,
     UsersService,
+    RegisterService,
     RecipesCategoryResolver,
     SingleRecipeResolver,
     EditRecipeResolver,

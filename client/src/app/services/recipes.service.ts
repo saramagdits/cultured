@@ -3,14 +3,14 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 // Needed for POST request. Authorization to come from AuthService
-const httpOptions = {
-  headers: new HttpHeaders({
-    // Content inferred by browser, content-type causes error
-    // 'Content-Type':  'multipart/form-data',
-    // Just for testing. Should be provided by authservice
-    'Authorization': 'Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=='
-  })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     // Content inferred by browser, content-type causes error
+//     // 'Content-Type':  'multipart/form-data',
+//     // Just for testing. Should be provided by authservice
+//     'Authorization': 'Basic dGVzdHVzZXJuYW1lOnRlc3RwYXNzd29yZA=='
+//   })
+// };
 
 @Injectable()
 export class RecipesService {
@@ -49,6 +49,6 @@ export class RecipesService {
   }
   createNewRecipe (recipe: {}) {
     const url = `${this.apiUrl}/recipes`;
-    return this.http.post(url, recipe, httpOptions);
+    return this.http.post(url, recipe);
   }
 }

@@ -21,6 +21,22 @@ export class AuthenticationService {
         return user;
       }));
   }
+  registerUser (newUser: {}) {
+    // Log the user out in case they are logged in for some reason
+    this.logout();
+    const url = `${environment.apiUrl}/users`;
+    return this.http.post(url, newUser)
+      .pipe(user => {
+        if (user) {
+          // store user details and basic auth credentials in local storage
+          // to keep user logged in between page refreshes
+          user.authdata = window.btoa(newUser.username + ':' + newUser.password);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+
+        return user;
+    });
+  }
 
   logout() {
     // remove user from local storage to log user out

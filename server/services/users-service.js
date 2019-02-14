@@ -1,7 +1,7 @@
 const db = require('../db/users-db');
 const userAuth = require('../services/userAuth-service');
 const userModel = require('../models/user-model');
-
+const userAuthModel = require('../models/userAuth-model');
 const Users = {};
 
 // GET all users
@@ -15,8 +15,9 @@ Users.createUser = async (queryValues) => {
   // TODO upload photo here, retrieve path to pass on to db
   // Hash the password before storing it
   queryValues.password = await userAuth.hashPassword(queryValues.password);
-  const data = await db.createUserData(queryValues);
-  return userModel.single(data);
+  return await db.createUserData(queryValues);
+  // const data = await db.createUserData(queryValues);
+  // return userAuthModel.single(data);
 };
 
 // GET a single user by id

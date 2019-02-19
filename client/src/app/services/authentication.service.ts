@@ -21,16 +21,16 @@ export class AuthenticationService {
         return user;
       }));
   }
-  registerUser (newUser: {}) {
+  registerUser (newUser) {
     // Log the user out in case they are logged in for some reason
     this.logout();
     const url = `${environment.apiUrl}/users`;
-    return this.http.post(url, newUser)
+    return this.http.post<any>(url, newUser)
       .pipe(map(user => {
         if (user) {
           // store user details and basic auth credentials in local storage
-          // to keep user logged in between page refreshes
-          user.authdata = window.btoa(user.username + ':' + user.password);
+          // to keep user loggedError: data and hash arguments required in between page refreshes
+          user.authdata = window.btoa(newUser.username + ':' + newUser.password);
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
 

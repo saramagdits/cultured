@@ -1,6 +1,7 @@
 const env = require('../environment/environment');
 const Router = require('express-promise-router');
 const users = require('../services/users-service');
+const userModel = require('../models/user-model');
 const passport = require('passport');
 const multer = require('multer');
 const upload = multer({dest: env.upload.avatars});
@@ -70,6 +71,7 @@ router.put('/:id', passport.authenticate('basic', {session: false}), (req, res) 
     const queryValues = {avatarPath: '/assets/images/user/updated.png'};
     // Update the user
     users.updateSingleUser(req.params.id, queryValues)
+      .then(user => userModel.single(user))
       .then(data => {if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}})
       .catch(() => res.status(500).send('Unable to update the user.'));
   } else {

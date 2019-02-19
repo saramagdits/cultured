@@ -21,6 +21,7 @@ import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolv
 import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
 import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
 import {UserProfileResolver} from './users/user-profile/user-profile-resolver.service';
+import {AuthGuard} from './guards/auth.guard';
 
 // Routes are in order of most to least specific. Uses a "first-match-wins" strategy
 // The '' empty path represents the default path
@@ -28,7 +29,8 @@ import {UserProfileResolver} from './users/user-profile/user-profile-resolver.se
 const routes: Routes = [
   { path: 'recipes',
     component: RecipesComponent,
-    data: { title: 'Heroes List' },
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       { path: 'self',
         component: CurrentUserRecipesComponent

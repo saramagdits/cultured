@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgModule } from '@angular/core';
@@ -36,17 +36,19 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { UsersComponent } from './users/users.component';
 import { AltNavComponent } from './alt-nav/alt-nav.component';
 import { SearchBarComponent } from './main-nav/search-bar/search-bar.component';
-import { FormsModule } from '@angular/forms';
-import { RecipesService } from './shared/recipes.service';
-import {UsersService} from './shared/users.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RecipesService } from './services/recipes.service';
+import {UsersService} from './services/users.service';
 import {RecipesCategoryResolver} from './recipes/recipes-category/recipes-category-resolver.service';
 import {SingleRecipeResolver} from './recipes/single-recipe/single-recipe-resolver.service';
-import {HttpErrorHandlerService} from './shared/http-error-handler.service';
+import {HttpErrorHandlerService} from './services/http-error-handler.service';
 import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.service';
 import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
 import {UserProfileResolver} from './users/user-profile/user-profile-resolver.service';
-
-
+import {BasicAuthInterceptor} from './interceptors/basic-auth.interceptor';
+import {ErrorInterceptor} from './interceptors/error.interceptor';
+import {AuthenticationService} from './services/authentication.service';
+import {RegisterService} from './services/register.service';
 
 @NgModule({
   declarations: [
@@ -86,17 +88,23 @@ import {UserProfileResolver} from './users/user-profile/user-profile-resolver.se
     MatMenuModule,
     AppRoutingModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     RecipesService,
     UsersService,
+    RegisterService,
     RecipesCategoryResolver,
     SingleRecipeResolver,
     EditRecipeResolver,
     RecipesSearchResolver,
     UserProfileResolver,
-    HttpErrorHandlerService],
+    HttpErrorHandlerService,
+    AuthenticationService,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

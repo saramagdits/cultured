@@ -48,7 +48,7 @@
       <mat-menu #accountMenu='matMenu'>
         <button routerLink='/recipes/self' mat-menu-item>My Recipes</button>
         <button routerLink='/users/self' mat-menu-item>My Profile</button>
-        <button routerLink='/logout' mat-menu-item>Log Out</button>
+        <button (click)='logOut()' routerLink='/' mat-menu-item>Log Out</button>
       </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->

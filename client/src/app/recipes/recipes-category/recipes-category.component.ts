@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {RecipesService} from '../../shared/recipes.service';
+import {RecipesService} from '../../services/recipes.service';
 
 @Component({
   selector: 'app-recipes-category',

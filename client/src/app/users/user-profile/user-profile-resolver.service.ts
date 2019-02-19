@@ -6,7 +6,7 @@ import {
   ActivatedRouteSnapshot
 } from '@angular/router';
 
-import {UsersService} from '../../shared/users.service';
+import {UsersService} from '../../services/users.service';
 
 import {Observable, of, EMPTY} from 'rxjs';
 

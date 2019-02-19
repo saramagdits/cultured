@@ -26,16 +26,16 @@ export class AuthenticationService {
     this.logout();
     const url = `${environment.apiUrl}/users`;
     return this.http.post(url, newUser)
-      .pipe(user => {
+      .pipe(map(user => {
         if (user) {
           // store user details and basic auth credentials in local storage
           // to keep user logged in between page refreshes
-          user.authdata = window.btoa(newUser.username + ':' + newUser.password);
+          user.authdata = window.btoa(user.username + ':' + user.password);
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
 
         return user;
-    });
+    }));
   }
 
   logout() {

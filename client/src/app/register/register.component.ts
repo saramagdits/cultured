@@ -65,8 +65,8 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.authenticationService.login(newUser.username, newUser.password);
-          this.router.navigate([this.returnUrl]);
+          // this.authenticationService.login(newUser.username, newUser.password);
+          this.router.navigate(['/recipes']);
         },
         error => {
           this.error = error;

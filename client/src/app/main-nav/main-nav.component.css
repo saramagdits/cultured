@@ -1,5 +1,5 @@
 .sidenav-container {
-  height: 100%;
+  min-height: 100vh;
 }
 
 .sidenav {
@@ -14,6 +14,11 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .spacer {

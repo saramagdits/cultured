@@ -42,6 +42,7 @@ mat-toolbar a {
   align-items: center;
   max-width: 15%;
 }
+
 .main-nav-logo {
   display: flex;
   flex-flow: row nowrap;
@@ -51,4 +52,13 @@ mat-toolbar a {
 
 mat-toolbar[_ngcontent-c2] a[_ngcontent-c2].sidebar-title {
   color: black;
+}
+#sidebar-title {
+  font-family: 'Alfa Slab One', cursive; }
+/*}mat-toolbar[_ngcontent-c2] a[_ngcontent-c2] {*/
+/*font-family: 'Alfa Slab One', cursive;*/
+/*}*/
+
+app-footer{
+  display: flex;
 }

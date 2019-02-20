@@ -10,7 +10,8 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $cultured-app-primary: mat-palette($cult-green);
-$cultured-app-accent:  mat-palette($cult-lime, A200, A100, A400);
+$cultured-app-accent:  mat-palette($cult-lime);
+//$cultured-app-accent:  mat-palette($cult-lime, A400, A200, A700);
 
 // The warn palette is optional (defaults to red).
 $cultured-app-warn:    mat-palette($mat-red);

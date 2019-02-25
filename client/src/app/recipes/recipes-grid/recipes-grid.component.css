@@ -2,6 +2,9 @@
   margin: 20px;
 }
 
+.mat-h1 {
+  text-transform: capitalize;
+}
 .dashboard-card {
   position: absolute;
   top: 15px;
@@ -19,3 +22,12 @@
 .dashboard-card-content {
   text-align: center;
 }
+.recipe-header-image {
+  background-size: cover;
+}
+mat-card-title{
+  text-transform: capitalize;
+}
+ mat-card-subtitle {
+   text-transform: capitalize;
+ }

@@ -3,4 +3,4 @@
 </p>
 <p *ngFor='let recipe of recipes'>this is recipe no. {{recipe.id}}</p>
 <!--<app-recipe-card *ngFor='let recipe of recipes'  [recipe]="recipe"></app-recipe-card>-->
-<app-recipes-grid></app-recipes-grid>
+<app-recipes-grid [recipes]='recipes'></app-recipes-grid>

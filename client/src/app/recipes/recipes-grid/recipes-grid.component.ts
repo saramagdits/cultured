@@ -18,7 +18,10 @@ export class RecipesGridComponent implements OnInit, OnChanges{
         if (matches) {
           return this.recipes.map(
             recipe => {
-              recipe.routerLink = `/recipes/${recipe.id}`;
+              recipe.recipeRouterLink = `/recipes/${recipe.id}`;
+              // TODO add authorId to recipe data so we may navigate to the author's profile
+              // recipe.authorRouterLink = `/users/${recipe.authorId}`;
+              recipe.authorRouterLink = `/users/186`;
               recipe.cols = 1;
               recipe.rows = 1;
               return recipe;

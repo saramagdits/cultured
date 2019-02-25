@@ -14,7 +14,7 @@ import {
   MatIconModule,
   MatListModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule, MatCardModule
 } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MainNavComponent } from './main-nav/main-nav.component';
@@ -49,6 +49,7 @@ import {BasicAuthInterceptor} from './interceptors/basic-auth.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AuthenticationService} from './services/authentication.service';
 import {RegisterService} from './services/register.service';
+import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {RegisterService} from './services/register.service';
     RecipesComponent,
     UsersComponent,
     AltNavComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    RecipeCardComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +91,8 @@ import {RegisterService} from './services/register.service';
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [
     RecipesService,

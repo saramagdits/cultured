@@ -1,0 +1,17 @@
+<mat-card class="recipe-card">
+  <mat-card-header>
+    <div mat-card-avatar class="recipe-header-image" [style.backgroundImage]="'url('+ recipe.authorAvatar +')'"></div>
+    <mat-card-title>{{recipe.title}}</mat-card-title>
+    <mat-card-subtitle>{{recipe.category}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]='recipe.imagePath || "/assets/images/recipes/default.png"' [alt]='recipe.title'>
+  <mat-card-content>
+    <p>
+      {{recipe.description}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

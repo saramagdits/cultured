@@ -42,7 +42,7 @@ router.post('/', checkHeaders, upload.single('avatar'), (req, res) => {
       username: req.body.username,
       password: req.body.password,
       dateCreated: new Date(),
-      avatarPath: (req.file ? req.file.filename : 'default.png')
+      avatarPath: (req.file ? '/assets/images/users/' + req.file.filename : '/assets/images/users/default.png')
     };
     // Create the new user
     users.createUser(queryValues)
@@ -68,7 +68,7 @@ router.put('/:id', passport.authenticate('basic', {session: false}), (req, res) 
   // Check if user exists and user id matches
   if (req.user && req.params.id === req.user.id.toString()) {
     // TODO check if avatar image has changed here
-    const queryValues = {avatarPath: '/assets/images/user/updated.png'};
+    const queryValues = {avatarPath: '/assets/images/users/updated.png'};
     // Update the user
     users.updateSingleUser(req.params.id, queryValues)
       .then(user => userModel.single(user))

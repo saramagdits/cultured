@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-recipes-grid',
@@ -17,6 +18,7 @@ export class RecipesGridComponent implements OnInit, OnChanges{
         if (matches) {
           return this.recipes.map(
             recipe => {
+              recipe.routerLink = `/recipes/${recipe.id}`;
               recipe.cols = 1;
               recipe.rows = 1;
               return recipe;
@@ -25,6 +27,7 @@ export class RecipesGridComponent implements OnInit, OnChanges{
         }
         return this.recipes.map(
           (recipe, index) => {
+            recipe.routerLink = `/recipes/${recipe.id}`;
             if (index === 0 ) { recipe.cols = 3; recipe.rows = 1; return recipe; }
             if (index % 7 === 0 ) { recipe.cols = 1; recipe.rows = 2; return recipe; }
             recipe.cols = 1;
@@ -59,7 +62,7 @@ export class RecipesGridComponent implements OnInit, OnChanges{
   //   })
   // );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
   ngOnChanges() {
     this.mapCards(this.recipes);
   }

@@ -24,10 +24,14 @@
 }
 .recipe-header-image {
   background-size: cover;
+  background-clip: border-box;
 }
 mat-card-title{
   text-transform: capitalize;
 }
  mat-card-subtitle {
    text-transform: capitalize;
+ }
+ [mat-card-image] {
+   /*max-height: 50%;*/
  }

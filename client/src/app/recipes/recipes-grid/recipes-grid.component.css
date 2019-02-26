@@ -31,6 +31,7 @@ mat-card-title{
 }
  mat-card-subtitle {
    text-transform: capitalize;
+   font-style: italic;
  }
  [mat-card-image] {
    /*max-height: 50%;*/

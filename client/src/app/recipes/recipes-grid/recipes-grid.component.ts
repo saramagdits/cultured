@@ -22,8 +22,8 @@ export class RecipesGridComponent implements OnInit, OnChanges{
               // TODO add authorId to recipe data so we may navigate to the author's profile
               // recipe.authorRouterLink = `/users/${recipe.authorId}`;
               recipe.authorRouterLink = `/users/186`;
-              recipe.cols = 1;
-              recipe.rows = 1;
+              recipe.cols = 2;
+              recipe.rows = 2;
               return recipe;
             }
           );
@@ -31,8 +31,8 @@ export class RecipesGridComponent implements OnInit, OnChanges{
         return this.recipes.map(
           (recipe, index) => {
             recipe.routerLink = `/recipes/${recipe.id}`;
-            if (index === 0 ) { recipe.cols = 3; recipe.rows = 1; return recipe; }
-            if (index % 7 === 0 ) { recipe.cols = 1; recipe.rows = 2; return recipe; }
+            if (index === 0 ) { recipe.cols = 4; recipe.rows = 1; return recipe; }
+            // if (index % 7 === 0 ) { recipe.cols = 1; recipe.rows = 2; return recipe; }
             recipe.cols = 1;
             recipe.rows = 1;
             return recipe;

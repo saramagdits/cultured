@@ -10,3 +10,9 @@ mat-toolbar a {
   color: #fff;
   text-decoration: none;
 }
+
+#sidebar-title {
+  font-family: 'Alfa Slab One', cursive;
+  /*color: rgba(0, 0, 0, 0.87);*/
+  color: #fff;
+}

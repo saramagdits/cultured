@@ -4,8 +4,8 @@
                [mode]="(isHandset$ | async) ? 'over' : 'side'"
                [opened]='!(isHandset$ | async)'>
     <mat-toolbar *ngIf='!(isHandset$ | async)'>
-      <img src='../../assets/images/app/temp_logo.png' alt='Temporary Jar Logo' class='sidebar-logo'>
-      <a routerLink='/' id='sidebar-title'>Cultured</a>
+      <img routerLink='/recipes' src='../../assets/images/app/temp_logo.png' alt='Temporary Jar Logo' class='sidebar-logo'>
+      <a routerLink='/recipes' id='sidebar-title'>Cultured</a>
     </mat-toolbar>
     <!--Search bar here-->
     <mat-toolbar>

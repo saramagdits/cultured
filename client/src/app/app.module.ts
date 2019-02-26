@@ -75,8 +75,8 @@ import { RecipesGridComponent } from './recipes/recipes-grid/recipes-grid.compon
     UsersComponent,
     AltNavComponent,
     SearchBarComponent,
-    FooterComponent
-    RecipesGridComponent
+    FooterComponent,
+    RecipesGridComponent,
     RecipeCardComponent,
   ],
   imports: [

@@ -1,0 +1,10 @@
+.recipe-card {
+  max-width: 200px;
+}
+
+.recipe-header-image {
+  background-size: cover;
+}
+mat-card-title{
+  text-transform: capitalize;
+}

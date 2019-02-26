@@ -75,7 +75,7 @@ router.post('/', passport.authenticate('basic', {session: false}), upload.single
       req.body.title,
       req.body.description,
       req.body.category,
-      (req.file ? req.file.filename : 'default.png'),
+      (req.file ? req.file.filename : '/assets/images/recipes/default.png'),
       req.body.prepTime,
       req.body.readyTime,
       req.body.difficulty,

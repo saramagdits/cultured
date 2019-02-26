@@ -14,7 +14,7 @@ import {
   MatIconModule,
   MatListModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule, MatCardModule, MatGridListModule
 } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 import { MainNavComponent } from './main-nav/main-nav.component';
@@ -50,6 +50,8 @@ import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AuthenticationService} from './services/authentication.service';
 import {RegisterService} from './services/register.service';
 import { FooterComponent } from './footer/footer.component';
+import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
+import { RecipesGridComponent } from './recipes/recipes-grid/recipes-grid.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { FooterComponent } from './footer/footer.component';
     AltNavComponent,
     SearchBarComponent,
     FooterComponent
+    RecipesGridComponent
+    RecipeCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,9 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    MatGridListModule
   ],
   providers: [
     RecipesService,

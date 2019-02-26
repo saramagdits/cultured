@@ -33,6 +33,14 @@ mat-card-title{
    text-transform: capitalize;
    font-style: italic;
  }
+ mat-card-subtitle a {
+   color: rgba(0, 0, 0, 0.54);
+ }
  [mat-card-image] {
    /*max-height: 50%;*/
+ }
+
+ a{
+   text-decoration: none;
+   color: rgba(0, 0, 0, 0.87);
  }

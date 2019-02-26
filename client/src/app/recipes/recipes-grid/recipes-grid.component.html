@@ -5,7 +5,8 @@
   <mat-grid-list cols="4" rowHeight="1:1.5">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="recipe-card dashboard-card">
-        <img mat-card-image [src]='(card.imagePath)' [alt]='card.title'>
+        <a routerLink='/recipes/{{card.id}}'><img mat-card-image [src]='(card.imagePath)' [alt]='card.title' ></a>
+
         <!--<mat-card-header>-->
 
           <!--<div mat-card-avatar class="recipe-header-image" [style.backgroundImage]="'url('+ (card.authorAvatar) +')'"></div>-->
@@ -18,8 +19,8 @@
         <!--</mat-card-header>-->
 
         <mat-card-content>
-          <mat-card-title>{{card.title}}</mat-card-title>
-          <a routerLink='/recipes/{{card.id}}'></a>
+
+          <a routerLink='/recipes/{{card.id}}'><mat-card-title >{{card.title}}</mat-card-title></a>
           <mat-card-subtitle>By <a routerLink='/users/136'>{{card.author}}</a></mat-card-subtitle>
 
           <p>

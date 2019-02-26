@@ -49,6 +49,7 @@ import {BasicAuthInterceptor} from './interceptors/basic-auth.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AuthenticationService} from './services/authentication.service';
 import {RegisterService} from './services/register.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {RegisterService} from './services/register.service';
     RecipesComponent,
     UsersComponent,
     AltNavComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

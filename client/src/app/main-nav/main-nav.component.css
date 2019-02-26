@@ -1,5 +1,5 @@
 .sidenav-container {
-  height: 100%;
+  min-height: 100vh;
 }
 
 .sidenav {
@@ -15,7 +15,14 @@
   top: 0;
   z-index: 1;
 }
-
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* same height as browser window height*/
+}
+.content {
+  flex: 1; /*child will set to an equal size inside the container*/
+}
 .spacer {
   /* This fills the remaining space, by using flexbox.
 	 Every toolbar row uses a flexbox row layout. */
@@ -35,6 +42,7 @@ mat-toolbar a {
   align-items: center;
   max-width: 15%;
 }
+
 .main-nav-logo {
   display: flex;
   flex-flow: row nowrap;
@@ -44,4 +52,13 @@ mat-toolbar a {
 
 mat-toolbar[_ngcontent-c2] a[_ngcontent-c2].sidebar-title {
   color: black;
+}
+#sidebar-title {
+  font-family: 'Alfa Slab One', cursive; }
+/*}mat-toolbar[_ngcontent-c2] a[_ngcontent-c2] {*/
+/*font-family: 'Alfa Slab One', cursive;*/
+/*}*/
+
+app-footer{
+  display: flex;
 }

@@ -1,0 +1,98 @@
+
+hr{
+  width: 150px;
+  height: 2px;
+  background-color: #677635;
+  border: 0;
+  margin-bottom: 80px;
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 125px 100px;
+}
+
+@media (max-width: 1000px){
+
+  section{
+    padding: 100px 50px;
+  }
+
+}
+
+@media (max-width: 600px){
+
+  section{
+    padding: 80px 30px;
+  }
+
+}
+
+.hero{
+  position: relative;
+  justify-content: center;
+  min-height: 100vh;
+  color: #fff;
+  text-align: center;
+}
+
+.hero .background-image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/images/app/duotone-pickles-landing-cropped.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #899D47;
+  z-index: -1;
+}
+
+.hero .background-image:after{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background-color: #333B1A;*/
+  /*opacity: 0.75;*/
+}
+
+.hero h1{
+  font: bold 60px 'Lato', sans-serif;
+  margin-bottom: 15px;
+}
+
+.hero h3{
+  font: normal 28px 'Lato', sans-serif;
+  margin-bottom: 40px;
+}
+
+.hero a.btn{
+  padding: 20px 46px;
+}
+
+@media (max-width: 800px){
+
+  .hero{
+    min-height: 600px;
+  }
+
+  .hero h1{
+    font-size: 48px;
+  }
+
+  .hero h3{
+    font-size: 24px;
+  }
+
+  .hero a.btn{
+    padding: 15px 40px;
+  }
+
+}
+

@@ -1,0 +1,7 @@
+* {
+  background-color: #ACB8AB;
+  color: #000;
+}
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: inherit;
+}

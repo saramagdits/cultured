@@ -39,13 +39,28 @@
 mat-card-title {
   text-transform: capitalize;
 }
+.truncate{
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*.truncate {*/
+  /*width: 250px;*/
+  /*white-space: nowrap;*/
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+/*}*/
 
 mat-card-subtitle {
   text-transform: capitalize;
   font-style: italic;
 }
+mat-card-subtitle p {
+  text-transform: capitalize;
+}
 
-mat-card-subtitle a {
+mat-card-content a {
   color: rgba(0, 0, 0, 0.54);
 }
 

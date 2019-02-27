@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {Router} from '@angular/router';
+import { Ellipsis } from 'ftellipsis';
 
 @Component({
   selector: 'app-recipes-grid',
@@ -13,7 +14,7 @@ export class RecipesGridComponent implements OnInit, OnChanges{
   cards;
   mapCards(recipes) {
     /** Based on the screen size, switch from standard to one column per row */
-    this.cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    this.cards = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).pipe(
       map(({ matches }) => {
         if (matches) {
           return this.recipes.map(
@@ -71,6 +72,14 @@ export class RecipesGridComponent implements OnInit, OnChanges{
   }
   ngOnInit() {
     this.mapCards(this.recipes);
+    // Truncate recipe titles
+    // const forEach = Array.prototype.forEach;
+    // const els = document.getElementsByClassName('truncate');
+    // forEach.call(els, function(el) {
+    //   const ellipsis = new Ellipsis(el);
+    //   ellipsis.calc();
+    //   ellipsis.set();
+    // });
     /** Based on the screen size, switch from standard to one column per row */
     // this.cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     //   map(({ matches }) => {

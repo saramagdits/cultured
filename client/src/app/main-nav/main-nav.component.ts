@@ -11,7 +11,7 @@ import {AuthenticationService} from '../services/authentication.service';
 })
 export class MainNavComponent {
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
     .pipe(
       map(result => result.matches)
     );

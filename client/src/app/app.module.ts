@@ -97,7 +97,7 @@ import { RecipesGridComponent } from './recipes/recipes-grid/recipes-grid.compon
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    MatGridListModule
+    MatGridListModule,
   ],
   providers: [
     RecipesService,

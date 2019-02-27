@@ -2,7 +2,8 @@
   <h1 class="mat-h1">{{recipes[0].category}}</h1>
   <!--The rowHeight ratio is column-width:row-height, and must be passed in with a colon-->
   <!--May also assign rowHeight as 'fit'. Please note the height of the grid-list or its container must be set.-->
-  <mat-grid-list cols="4" rowHeight="1:1.5">
+  <mat-grid-list cols="4" [rowHeight]="(isHandset$ | async) ? '1:1.25' : '1:1.5'">
+  <!--<mat-grid-list cols="4" rowHeight="1:1.5">-->
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
       <mat-card class="recipe-card dashboard-card">
         <a routerLink='/recipes/{{card.id}}'><img mat-card-image [src]='(card.imagePath)' [alt]='card.title' ></a>
@@ -18,13 +19,13 @@
         <!--</button>-->
         <!--</mat-card-header>-->
 
-        <mat-card-content>
+        <mat-card-content >
 
           <a routerLink='/recipes/{{card.id}}'><mat-card-title>A really long title about sauerkraut and stuff</mat-card-title></a>
           <mat-card-subtitle>By <a routerLink='/users/136'>{{card.author}}</a></mat-card-subtitle>
 
-          <p>
-            {{card.description}}
+          <p class='truncate'>
+            {{card.description}} {{card.description}} {{card.description}} {{card.description}} {{card.description}} {{card.description}} {{card.description}} {{card.description}} {{card.description}} {{card.description}}
           </p>
           <button mat-icon-button class='favorite-button' color="accent">
             <mat-icon aria-label="Favorite this button">favorite</mat-icon>

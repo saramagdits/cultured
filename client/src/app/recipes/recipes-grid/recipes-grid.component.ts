@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import {Router} from '@angular/router';
 import { Ellipsis } from 'ftellipsis';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-recipes-grid',
@@ -12,6 +13,12 @@ import { Ellipsis } from 'ftellipsis';
 export class RecipesGridComponent implements OnInit, OnChanges{
   @Input() recipes;
   cards;
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall])
+    .pipe(
+      map(result => result.matches)
+    );
+
   mapCards(recipes) {
     /** Based on the screen size, switch from standard to one column per row */
     this.cards = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).pipe(

@@ -38,7 +38,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
 
   mapCards() {
     /** Based on the screen size, switch row layouts*/
-    this.cards = () => {
+    this.cards = (() => {
       if (this.isWeb$) {
         this.rowHeight = '1:1.5';
         return this.recipes.map(
@@ -83,7 +83,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           }
         );
       }
-    };
+    })();
     // this.cards = this.breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet]).pipe(
     //   map(({ matches }) => {
     //     if (matches) {
@@ -145,6 +145,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    
     this.mapCards();
     // Truncate recipe titles
     // const forEach = Array.prototype.forEach;

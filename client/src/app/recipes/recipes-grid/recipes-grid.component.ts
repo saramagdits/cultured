@@ -26,6 +26,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
         (recipe, index) => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           if (index === 0) {
+            recipe.jumbo = true;
             recipe.cols = 4;
             recipe.rows = 1;
             // TODO add authorId to recipe data so we may navigate to the author's profile
@@ -33,6 +34,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
             recipe.authorRouterLink = `/users/137`;
             return recipe;
           }
+          recipe.jumbo = false;
           recipe.cols = 1;
           recipe.rows = 1;
           // TODO add authorId to recipe data so we may navigate to the author's profile
@@ -46,6 +48,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
       this.rowHeight = '1:1.25';
       this.cards = this.recipes.map(
         recipe => {
+          recipe.jumbo = false;
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
@@ -60,6 +63,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
       this.rowHeight = '1:1';
       this.cards = this.recipes.map(
         recipe => {
+          recipe.jumbo = false;
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
           // recipe.authorRouterLink = `/users/${recipe.authorId}`;

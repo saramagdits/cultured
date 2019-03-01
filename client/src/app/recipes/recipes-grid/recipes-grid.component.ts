@@ -12,8 +12,8 @@ import {Observable} from 'rxjs';
 })
 export class RecipesGridComponent implements OnInit, OnChanges {
   @Input() recipes;
-  cards;
-  rowHeight;
+  public cards;
+  public rowHeight;
   // Define breakpoints from breakpointObserver
   // Large : 1919 - 1440 px / 4 cols, reduce row height
   // Medium : 1439 - 1024 px / 4 cols, remove max width, maybe reduce row height
@@ -38,8 +38,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   //   );
   activateWebLayout() {
     this.rowHeight = '1:1.5';
-    this.cards = (() => {
-      return this.recipes.map(
+    this.cards = this.recipes.map(
         (recipe, index) => {
           recipe.routerLink = `/recipes/${recipe.id}`;
           if (index === 0) {
@@ -52,12 +51,10 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           return recipe;
         }
       );
-    })();
   }
   activateTabletLayout() {
     this.rowHeight = '1:1.25';
-    this.cards = (() => {
-      return this.recipes.map(
+    this.cards = this.recipes.map(
         recipe => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
@@ -68,12 +65,10 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           return recipe;
         }
       );
-    })();
   }
   activateHandsetLayout() {
     this.rowHeight = '1:1';
-    this.cards = (() => {
-      return this.recipes.map(
+    this.cards = this.recipes.map(
         recipe => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
@@ -84,7 +79,6 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           return recipe;
         }
       );
-    })();
   }
   // mapCards() {
   //   /** Based on the screen size, switch row layouts*/

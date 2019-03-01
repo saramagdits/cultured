@@ -1,15 +1,22 @@
 <div class="grid-container">
-  <h1 class="mat-h1">{{recipes[0].category}}</h1>
   <!--The rowHeight ratio is column-width:row-height, and must be passed in with a colon-->
   <!--May also assign rowHeight as 'fit'. Please note the height of the grid-list or its container must be set.-->
   <mat-grid-list cols="4" [rowHeight]='rowHeight'>
-    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="recipe-card dashboard-card">
+    <h1 class="mat-h1">{{recipes[0].category}}</h1>
+    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows" >
+      <mat-card class="recipe-card dashboard-card" >
         <a [routerLink]='card.recipeRouterLink'><img mat-card-image [src]='(card.imagePath)' [alt]='card.title' ></a>
-        <mat-card-content >
-          <a [routerLink]='card.recipeRouterLink'><mat-card-title>A really long title about sauerkraut and stuff</mat-card-title></a>
-          <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
-          <button mat-icon-button class='favorite-button' color="accent">
+        <!--.jumbo-styles applies styling to the first recipe card in web view only-->
+        <mat-card-content [ngClass]="{'jumbo-styles' : card.jumbo}">
+          <div [ngClass]="{'jumbo-styles-content' : card.jumbo}">
+            <a [routerLink]='card.recipeRouterLink'><mat-card-title>A really long title about sauerkraut and stuff</mat-card-title></a>
+            <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
+            <p *ngIf='card.jumbo'>{{card.description}}</p>
+          </div>
+          <!--<button mat-icon-button class='favorite-button' color="accent">-->
+            <!--<mat-icon aria-label="Favorite this button">favorite</mat-icon>-->
+          <!--</button>-->
+          <button mat-mini-fab color='accent' class='favorite-button'>
             <mat-icon aria-label="Favorite this button">favorite</mat-icon>
           </button>
         </mat-card-content>

@@ -4,6 +4,7 @@
 
 .mat-h1 {
   text-transform: capitalize;
+  padding: 16px;
 }
 
 .dashboard-card {
@@ -12,12 +13,6 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
-}
-
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
 }
 
 .dashboard-card-content {
@@ -32,10 +27,34 @@
 .mat-grid-list {
   display: block;
   position: relative;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
+.jumbo-styles{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.jumbo-styles-content {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 460px;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+.jumbo-styles p {
+  margin: 0;
+}
+.jumbo-styles mat-card-title {
+  font-size: 20px;
+}
 mat-card-title {
   text-transform: capitalize;
   font-size: 16px;
@@ -58,6 +77,9 @@ mat-card-subtitle {
   text-transform: capitalize;
   font-style: italic;
 }
+mat-card-subtitle a {
+  display: contents;
+}
 mat-card-subtitle p {
   text-transform: capitalize;
 }
@@ -66,23 +88,19 @@ mat-card-content a {
   color: rgba(0, 0, 0, 0.54);
 }
 
-[mat-card-image] {
-  /*max-height: 50%;*/
-}
-
 a {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.87);
 }
 
 /*Favorite button overlay*/
-
 .favorite-button {
   position: absolute;
   z-index: 90000;
-  right: 0;
-  top: 0;
-  width: 50px;
-  height: 50px;
-  overflow: auto;
+  right: 10px;
+  top: 10px;
+  /*Does not work with mini-fab*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*overflow: auto;*/
 }

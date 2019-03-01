@@ -49,6 +49,9 @@
   max-width: 460px;
   background-color: rgba(255, 255, 255, 0.85);
 }
+.jumbo-styles p {
+  margin: 0;
+}
 .jumbo-styles mat-card-title {
   font-size: 20px;
 }

@@ -9,7 +9,10 @@
         <mat-card-content >
           <a [routerLink]='card.recipeRouterLink'><mat-card-title>A really long title about sauerkraut and stuff</mat-card-title></a>
           <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
-          <button mat-icon-button class='favorite-button' color="accent">
+          <!--<button mat-icon-button class='favorite-button' color="accent">-->
+            <!--<mat-icon aria-label="Favorite this button">favorite</mat-icon>-->
+          <!--</button>-->
+          <button mat-mini-fab color='accent' class='favorite-button'>
             <mat-icon aria-label="Favorite this button">favorite</mat-icon>
           </button>
         </mat-card-content>

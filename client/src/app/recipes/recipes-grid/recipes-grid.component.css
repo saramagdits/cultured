@@ -59,6 +59,9 @@ mat-card-subtitle {
   text-transform: capitalize;
   font-style: italic;
 }
+mat-card-subtitle a {
+  display: contents;
+}
 mat-card-subtitle p {
   text-transform: capitalize;
 }
@@ -83,7 +86,8 @@ a {
   z-index: 90000;
   right: 0;
   top: 0;
-  width: 50px;
-  height: 50px;
-  overflow: auto;
+  /*Does not work with mini-fab*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*overflow: auto;*/
 }

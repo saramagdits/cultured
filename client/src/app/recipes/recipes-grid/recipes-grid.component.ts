@@ -21,7 +21,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   //
   // Activate different layouts depending on current breakpoint
   activateWebLayout() {
-      this.rowHeight = '1:1.5';
+      this.rowHeight = '1:1.12';
       this.cards = this.recipes.map(
         (recipe, index) => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;

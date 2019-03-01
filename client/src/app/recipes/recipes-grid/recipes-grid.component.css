@@ -4,6 +4,7 @@
 
 .mat-h1 {
   text-transform: capitalize;
+  padding: 16px;
 }
 
 .dashboard-card {
@@ -32,7 +33,7 @@
 .mat-grid-list {
   display: block;
   position: relative;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

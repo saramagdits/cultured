@@ -5,7 +5,8 @@
   <mat-grid-list cols="4" [rowHeight]='rowHeight'>
   <!--<mat-grid-list cols="4" [rowHeight]="(isHandset$ | async) ? '1:1.25' : '1:1.5'">-->
   <!--<mat-grid-list cols="4" rowHeight="1:1.5">-->
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+    <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows">
+    <!--<mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">-->
       <mat-card class="recipe-card dashboard-card">
         <a routerLink='/recipes/{{card.id}}'><img mat-card-image [src]='(card.imagePath)' [alt]='card.title' ></a>
 

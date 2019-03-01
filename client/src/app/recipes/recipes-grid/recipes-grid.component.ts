@@ -37,8 +37,9 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   //     map(result => result.matches)
   //   );
   activateWebLayout() {
-    this.rowHeight = '1:1.5';
-    this.cards = this.recipes.map(
+    if (this.recipes) {
+      this.rowHeight = '1:1.5';
+      this.cards = this.recipes.map(
         (recipe, index) => {
           recipe.routerLink = `/recipes/${recipe.id}`;
           if (index === 0) {
@@ -51,10 +52,12 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           return recipe;
         }
       );
+    }
   }
   activateTabletLayout() {
-    this.rowHeight = '1:1.25';
-    this.cards = this.recipes.map(
+    if (this.recipes) {
+      this.rowHeight = '1:1.25';
+      this.cards = this.recipes.map(
         recipe => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
@@ -65,10 +68,12 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           return recipe;
         }
       );
+    }
   }
   activateHandsetLayout() {
-    this.rowHeight = '1:1';
-    this.cards = this.recipes.map(
+    if (this.recipes) {
+      this.rowHeight = '1:1';
+      this.cards = this.recipes.map(
         recipe => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
@@ -79,6 +84,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           return recipe;
         }
       );
+    }
   }
   // mapCards() {
   //   /** Based on the screen size, switch row layouts*/

@@ -14,6 +14,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   @Input() recipes;
   public cards;
   public rowHeight;
+  public layoutMode = '';
   // Define breakpoints from breakpointObserver
   // Web : 1280px+
   // Tablet : 1279px - 960px
@@ -21,22 +22,23 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   //
   // Activate different layouts depending on current breakpoint
   activateWebLayout() {
-      this.rowHeight = '1:1.12';
+      this.rowHeight = '1:1.2';
+      this.layoutMode = 'web';
       this.cards = this.recipes.map(
         (recipe, index) => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           if (index === 0) {
             recipe.jumbo = true;
-            recipe.cols = 4;
-            recipe.rows = 1;
+            recipe.cols = 12;
+            recipe.rows = 3;
             // TODO add authorId to recipe data so we may navigate to the author's profile
             // recipe.authorRouterLink = `/users/${recipe.authorId}`;
             recipe.authorRouterLink = `/users/137`;
             return recipe;
           }
           recipe.jumbo = false;
-          recipe.cols = 1;
-          recipe.rows = 1;
+          recipe.cols = 3;
+          recipe.rows = 3;
           // TODO add authorId to recipe data so we may navigate to the author's profile
           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
           recipe.authorRouterLink = `/users/137`;
@@ -45,7 +47,8 @@ export class RecipesGridComponent implements OnInit, OnChanges {
       );
   }
   activateTabletLayout() {
-      this.rowHeight = '1:1.25';
+      this.rowHeight = '1:1.14';
+      this.layoutMode = 'tablet';
       this.cards = this.recipes.map(
         recipe => {
           recipe.jumbo = false;
@@ -53,14 +56,15 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           // TODO add authorId to recipe data so we may navigate to the author's profile
           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
           recipe.authorRouterLink = `/users/137`;
-          recipe.cols = 2;
-          recipe.rows = 2;
+          recipe.cols = 4;
+          recipe.rows = 4;
           return recipe;
         }
       );
   }
   activateHandsetLayout() {
-      this.rowHeight = '1:1';
+      this.rowHeight = '1:1.2';
+      this.layoutMode = 'handset';
       this.cards = this.recipes.map(
         recipe => {
           recipe.jumbo = false;
@@ -68,8 +72,8 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           // TODO add authorId to recipe data so we may navigate to the author's profile
           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
           recipe.authorRouterLink = `/users/137`;
-          recipe.cols = 2;
-          recipe.rows = 2;
+          recipe.cols = 6;
+          recipe.rows = 6;
           return recipe;
         }
       );

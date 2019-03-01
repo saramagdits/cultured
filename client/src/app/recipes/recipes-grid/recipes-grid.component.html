@@ -8,8 +8,11 @@
         <a [routerLink]='card.recipeRouterLink'><img mat-card-image [src]='(card.imagePath)' [alt]='card.title' ></a>
         <!--.jumbo-styles applies styling to the first recipe card in web view only-->
         <mat-card-content [ngClass]="{'jumbo-styles' : card.jumbo}">
-          <a [routerLink]='card.recipeRouterLink'><mat-card-title>A really long title about sauerkraut and stuff</mat-card-title></a>
-          <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
+          <div [ngClass]="{'jumbo-styles-content' : card.jumbo}">
+            <a [routerLink]='card.recipeRouterLink'><mat-card-title>A really long title about sauerkraut and stuff</mat-card-title></a>
+            <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
+            <p *ngIf='card.jumbo'>{{card.description}}</p>
+          </div>
           <!--<button mat-icon-button class='favorite-button' color="accent">-->
             <!--<mat-icon aria-label="Favorite this button">favorite</mat-icon>-->
           <!--</button>-->

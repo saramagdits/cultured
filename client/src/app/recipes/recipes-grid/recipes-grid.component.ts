@@ -15,187 +15,89 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   public cards;
   public rowHeight;
   // Define breakpoints from breakpointObserver
-  // Large : 1919 - 1440 px / 4 cols, reduce row height
-  // Medium : 1439 - 1024 px / 4 cols, remove max width, maybe reduce row height
-  // Small : 1023 - 606 px / something happening at 960? make more consistent. reduce row height
-  // Xsmall : 599 - 0 px / maybe make fonts smaller
   // Web : 1280px+
   // Tablet : 1279px - 960px
   // Handset: 959px-
-  // Keeps track of browser states
-  // TODO maybe this needs to be moved to constructor
-  // isHandset$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Handset])
-  //   .pipe(
-  //     map(result => result.matches)
-  //   );
-  // isTablet$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Tablet])
-  //   .pipe(
-  //     map(result => result.matches)
-  //   );
-  // isWeb$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Web])
-  //   .pipe(
-  //     map(result => result.matches)
-  //   );
+  //
+  // Activate different layouts depending on current breakpoint
   activateWebLayout() {
-    if (this.recipes) {
       this.rowHeight = '1:1.5';
       this.cards = this.recipes.map(
         (recipe, index) => {
-          recipe.routerLink = `/recipes/${recipe.id}`;
+          recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           if (index === 0) {
             recipe.cols = 4;
             recipe.rows = 1;
+            // TODO add authorId to recipe data so we may navigate to the author's profile
+            // recipe.authorRouterLink = `/users/${recipe.authorId}`;
+            recipe.authorRouterLink = `/users/137`;
             return recipe;
           }
           recipe.cols = 1;
           recipe.rows = 1;
+          // TODO add authorId to recipe data so we may navigate to the author's profile
+          // recipe.authorRouterLink = `/users/${recipe.authorId}`;
+          recipe.authorRouterLink = `/users/137`;
           return recipe;
         }
       );
-    }
   }
   activateTabletLayout() {
-    if (this.recipes) {
       this.rowHeight = '1:1.25';
       this.cards = this.recipes.map(
         recipe => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
-          recipe.authorRouterLink = `/users/186`;
+          recipe.authorRouterLink = `/users/137`;
           recipe.cols = 2;
           recipe.rows = 2;
           return recipe;
         }
       );
-    }
   }
   activateHandsetLayout() {
-    if (this.recipes) {
       this.rowHeight = '1:1';
       this.cards = this.recipes.map(
         recipe => {
           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
           // TODO add authorId to recipe data so we may navigate to the author's profile
           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
-          recipe.authorRouterLink = `/users/186`;
+          recipe.authorRouterLink = `/users/137`;
           recipe.cols = 2;
           recipe.rows = 2;
           return recipe;
         }
       );
-    }
   }
-  // mapCards() {
-  //   /** Based on the screen size, switch row layouts*/
-  //   this.cards = (() => {
-  //     if (this.isWeb$) {
-  //       this.rowHeight = '1:1.5';
-  //       return this.recipes.map(
-  //         (recipe, index) => {
-  //           recipe.routerLink = `/recipes/${recipe.id}`;
-  //           if (index === 0) {
-  //             recipe.cols = 4;
-  //             recipe.rows = 1;
-  //             return recipe;
-  //           }
-  //           recipe.cols = 1;
-  //           recipe.rows = 1;
-  //           return recipe;
-  //         }
-  //       );
-  //     }
-  //     if (this.isTablet$) {
-  //       this.rowHeight = '1:1.25';
-  //       return this.recipes.map(
-  //         recipe => {
-  //           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
-  //           // TODO add authorId to recipe data so we may navigate to the author's profile
-  //           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
-  //           recipe.authorRouterLink = `/users/186`;
-  //           recipe.cols = 2;
-  //           recipe.rows = 2;
-  //           return recipe;
-  //         }
-  //       );
-  //     }
-  //     if (this.isHandset$) {
-  //       this.rowHeight = '1:1';
-  //       return this.recipes.map(
-  //         recipe => {
-  //           recipe.recipeRouterLink = `/recipes/${recipe.id}`;
-  //           // TODO add authorId to recipe data so we may navigate to the author's profile
-  //           // recipe.authorRouterLink = `/users/${recipe.authorId}`;
-  //           recipe.authorRouterLink = `/users/186`;
-  //           recipe.cols = 2;
-  //           recipe.rows = 2;
-  //           return recipe;
-  //         }
-  //       );
-  //     }
-  //   })();
-  // }
 
-  constructor(breakpointObserver: BreakpointObserver) {
-    breakpointObserver.observe([
+  constructor(private breakpointObserver: BreakpointObserver) {
+  }
+
+  ngOnChanges() {
+  }
+
+  ngOnInit() {
+    this.breakpointObserver.observe([
       Breakpoints.Web
     ]).subscribe(result => {
       if (result.matches) {
         this.activateWebLayout();
       }
     });
-    breakpointObserver.observe([
+    this.breakpointObserver.observe([
       Breakpoints.Tablet
     ]).subscribe(result => {
       if (result.matches) {
         this.activateTabletLayout();
       }
     });
-    breakpointObserver.observe([
+    this.breakpointObserver.observe([
       Breakpoints.Handset
     ]).subscribe(result => {
       if (result.matches) {
         this.activateHandsetLayout();
       }
     });
-  }
-
-  ngOnChanges() {
-    // this.mapCards();
-  }
-
-  ngOnInit() {
-    // this.mapCards();
-    // Truncate recipe titles
-    // const forEach = Array.prototype.forEach;
-    // const els = document.getElementsByClassName('truncate');
-    // forEach.call(els, function(el) {
-    //   const ellipsis = new Ellipsis(el);
-    //   ellipsis.calc();
-    //   ellipsis.set();
-    // });
-    /** Based on the screen size, switch from standard to one column per row */
-    // this.cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    //   map(({ matches }) => {
-    //     if (matches) {
-    //       return this.recipes.map(
-    //         recipe => {
-    //           recipe.cols = 1;
-    //           recipe.rows = 1;
-    //           return recipe;
-    //         }
-    //       );
-    //     }
-    //     return this.recipes.map(
-    //       (recipe, index) => {
-    //         if (index === 0 ) { recipe.cols = 3; recipe.rows = 1; return recipe; }
-    //         if (index % 7 === 0 ) { recipe.cols = 1; recipe.rows = 2; return recipe; }
-    //         recipe.cols = 1;
-    //         recipe.rows = 1;
-    //         return recipe;
-    //       }
-    //     );
-    //   })
-    // );
   }
 }

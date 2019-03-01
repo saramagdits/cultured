@@ -59,6 +59,11 @@ mat-card-content .tablet-styles{
   margin-top: -16px;
   font-size: 14px;
 }
+.handset-styles{
+  margin-top: -16px;
+  font-size: 14px;
+  line-height: 1em;
+}
 mat-card-title {
   text-transform: capitalize;
   font-size: 16px;

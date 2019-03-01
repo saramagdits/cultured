@@ -14,7 +14,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   @Input() recipes;
   public cards;
   public rowHeight;
-  public layoutMode;
+  public layoutMode = '';
   // Define breakpoints from breakpointObserver
   // Web : 1280px+
   // Tablet : 1279px - 960px
@@ -22,7 +22,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   //
   // Activate different layouts depending on current breakpoint
   activateWebLayout() {
-      this.rowHeight = '1:1.12';
+      this.rowHeight = '1:1.2';
       this.layoutMode = 'web';
       this.cards = this.recipes.map(
         (recipe, index) => {
@@ -47,7 +47,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
       );
   }
   activateTabletLayout() {
-      this.rowHeight = '1:1.02';
+      this.rowHeight = '1:1.14';
       this.layoutMode = 'tablet';
       this.cards = this.recipes.map(
         recipe => {
@@ -63,7 +63,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
       );
   }
   activateHandsetLayout() {
-      this.rowHeight = '1:1';
+      this.rowHeight = '1:1.2';
       this.layoutMode = 'handset';
       this.cards = this.recipes.map(
         recipe => {

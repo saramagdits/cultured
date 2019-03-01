@@ -84,8 +84,8 @@ a {
 .favorite-button {
   position: absolute;
   z-index: 90000;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 10px;
   /*Does not work with mini-fab*/
   /*width: 50px;*/
   /*height: 50px;*/

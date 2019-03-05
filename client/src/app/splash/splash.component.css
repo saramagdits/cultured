@@ -10,7 +10,6 @@ hr{
 section{
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 125px 100px;
 }
 
@@ -36,6 +35,10 @@ section{
   min-height: 100vh;
   color: #fff;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 125px 100px;
 }
 
 .hero .background-image{
@@ -75,7 +78,7 @@ section{
 .hero a.btn{
   padding: 20px 46px;
 }
-
+/*TODO update this to use breakpointObserver*/
 @media (max-width: 800px){
 
   .hero{
@@ -94,5 +97,120 @@ section{
     padding: 15px 40px;
   }
 
+}
+.grid-container {
+  margin: 20px;
+}
+
+.mat-h1 {
+  text-transform: capitalize;
+  padding: 16px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.recipe-header-image {
+  background-size: cover;
+  background-clip: border-box;
+}
+
+.mat-grid-list {
+  display: block;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.jumbo-styles{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.jumbo-styles-content {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 460px;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+.jumbo-styles p {
+  margin: 0;
+}
+.jumbo-styles mat-card-title {
+  font-size: 20px;
+}
+mat-card-content .tablet-styles{
+  margin-top: -16px;
+  font-size: 14px;
+}
+.handset-styles{
+  margin-top: -16px;
+  font-size: 14px;
+  line-height: 1em;
+}
+mat-card-title {
+  text-transform: capitalize;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.truncate{
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*.truncate {*/
+/*width: 250px;*/
+/*white-space: nowrap;*/
+/*overflow: hidden;*/
+/*text-overflow: ellipsis;*/
+/*}*/
+
+mat-card-subtitle {
+  text-transform: capitalize;
+  font-style: italic;
+}
+mat-card-subtitle a {
+  display: contents;
+}
+mat-card-subtitle p {
+  text-transform: capitalize;
+}
+
+mat-card-content a {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+a {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+/*Favorite button overlay*/
+.favorite-button {
+  position: absolute;
+  z-index: 90000;
+  right: 10px;
+  top: 10px;
+  /*Does not work with mini-fab*/
+  /*width: 50px;*/
+  /*height: 50px;*/
+  /*overflow: auto;*/
 }
 

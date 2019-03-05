@@ -47,7 +47,7 @@ export class RecipesService {
       { params: new HttpParams().set('ing', ingredients) } : {};
     return this.http.get(url, options);
   }
-  getRecentRecipes(quantity: string) {
+  getRecentRecipes(quantity) {
     const url = `${this.apiUrl}/recipes/recent`;
     const options = quantity ?
       { params: new HttpParams().set('quantity', quantity) } : {};

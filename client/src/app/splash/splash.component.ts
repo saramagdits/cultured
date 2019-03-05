@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-splash',
@@ -11,6 +12,7 @@ export class SplashComponent implements OnInit {
   public cards;
   public rowHeight;
   public layoutMode = '';
+  public error;
   // Define breakpoints from breakpointObserver
   // Web : 1280px+
   // Tablet : 1279px - 960px
@@ -91,9 +93,13 @@ export class SplashComponent implements OnInit {
       }
     );
   }
-  constructor(private breakpointObserver: BreakpointObserver) { }
+  constructor(private breakpointObserver: BreakpointObserver, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data
+      .subscribe((data: { recipes }) => {
+        this.recipes = data.recipes;
+      });
     this.breakpointObserver.observe([
       Breakpoints.Web
     ]).subscribe(result => {

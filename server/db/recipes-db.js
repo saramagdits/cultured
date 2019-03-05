@@ -101,7 +101,7 @@ Recipes.getRecipesByCategoryData = async (category) => {
 Recipes.getRecentRecipesData = async (quantity) => {
   const query = {
     text: 'SELECT\n' +
-      'r.id,\n'+
+      'DISTINCT(r.id),\n'+
       'r.title,\n' +
       'r.description,\n' +
       'r.category,\n' +
@@ -121,7 +121,9 @@ Recipes.getRecentRecipesData = async (quantity) => {
       'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
       'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
       'INNER JOIN users u on r.author = u.id\n' +
-      'ORDER BY date_created DESC LIMIT $1',
+      'where r.id in (select distinct(r2.id)\n' +
+      'from recipes r2 limit $1)'+
+      'ORDER BY date_created DESC',
     values: [quantity]
   };
   return await db.query(query)

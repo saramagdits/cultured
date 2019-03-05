@@ -13,7 +13,8 @@ export class RecentRecipesResolver implements Resolve<any> {
 
   resolve(route: ActivatedRouteSnapshot) {
     if ( route.component === SplashComponent ) {
-      return this.recipesService.getRecentRecipes(4).pipe(recipes => {
+      // Specify how many recipes for the splash page
+      return this.recipesService.getRecentRecipes(5).pipe(recipes => {
           if (recipes) {
             return recipes;
           } else { // id not found

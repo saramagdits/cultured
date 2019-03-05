@@ -7,6 +7,10 @@
   </section>
   <section class='recipe-ideas'>
     <h2>Recipe Ideas</h2>
+    <!--TODO add recipe category cards-->
+  </section>
+  <section class='recent-recipes'>
+    <h2>Recent Recipes</h2>
     <!--Display recipe category cards-->
     <div class="grid-container">
       <!--The rowHeight ratio is column-width:row-height, and must be passed in with a colon-->
@@ -23,9 +27,6 @@
                 <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
                 <p *ngIf='card.jumbo'>{{card.description}}</p>
               </div>
-              <!--<button mat-icon-button class='favorite-button' color="accent">-->
-              <!--<mat-icon aria-label="Favorite this button">favorite</mat-icon>-->
-              <!--</button>-->
               <button mat-mini-fab color='accent' class='favorite-button'>
                 <mat-icon aria-label="Favorite this button">favorite</mat-icon>
               </button>
@@ -34,8 +35,5 @@
         </mat-grid-tile>
       </mat-grid-list>
     </div>
-  </section>
-  <section class='recent-recipes'>
-    <h2>Recent Recipes</h2>
   </section>
 </app-alt-nav>

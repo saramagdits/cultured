@@ -20,7 +20,6 @@ export class SplashComponent implements OnInit {
   //
   // Activate different layouts depending on current breakpoint
   activateWebLayout() {
-    console.log(this.recipes);
     this.rowHeight = '1:1.2';
     this.layoutMode = 'web';
     this.cards = this.recipes.map(
@@ -49,7 +48,7 @@ export class SplashComponent implements OnInit {
     this.rowHeight = '1:1.14';
     this.layoutMode = 'tablet';
     this.cards = this.recipes.map(
-      recipe => {
+      (recipe) => {
         recipe.jumbo = false;
         recipe.recipeRouterLink = `/recipes/${recipe.id}`;
         // TODO add authorId to recipe data so we may navigate to the author's profile
@@ -59,7 +58,7 @@ export class SplashComponent implements OnInit {
         recipe.rows = 4;
         return recipe;
       }
-    );
+    ).slice(2);
   }
   activateHandsetPortraitLayout() {
     this.rowHeight = '1:1.4';
@@ -75,7 +74,7 @@ export class SplashComponent implements OnInit {
         recipe.rows = 6;
         return recipe;
       }
-    );
+    ).slice(1);
   }
   activateHandsetLandscapeLayout() {
     this.rowHeight = '1:1.22';
@@ -91,7 +90,7 @@ export class SplashComponent implements OnInit {
         recipe.rows = 4;
         return recipe;
       }
-    );
+    ).slice(2);
   }
   constructor(private breakpointObserver: BreakpointObserver, private route: ActivatedRoute) { }
 

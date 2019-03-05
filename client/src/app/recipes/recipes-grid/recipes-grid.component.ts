@@ -62,8 +62,8 @@ export class RecipesGridComponent implements OnInit, OnChanges {
         }
       );
   }
-  activateHandsetLayout() {
-      this.rowHeight = '1:1.2';
+  activateHandsetPortraitLayout() {
+      this.rowHeight = '1:1.4';
       this.layoutMode = 'handset';
       this.cards = this.recipes.map(
         recipe => {
@@ -74,6 +74,22 @@ export class RecipesGridComponent implements OnInit, OnChanges {
           recipe.authorRouterLink = `/users/137`;
           recipe.cols = 6;
           recipe.rows = 6;
+          return recipe;
+        }
+      );
+  }
+  activateHandsetLandscapeLayout() {
+      this.rowHeight = '1:1.22';
+      this.layoutMode = 'handset';
+      this.cards = this.recipes.map(
+        recipe => {
+          recipe.jumbo = false;
+          recipe.recipeRouterLink = `/recipes/${recipe.id}`;
+          // TODO add authorId to recipe data so we may navigate to the author's profile
+          // recipe.authorRouterLink = `/users/${recipe.authorId}`;
+          recipe.authorRouterLink = `/users/137`;
+          recipe.cols = 4;
+          recipe.rows = 4;
           return recipe;
         }
       );
@@ -101,10 +117,16 @@ export class RecipesGridComponent implements OnInit, OnChanges {
       }
     });
     this.breakpointObserver.observe([
-      Breakpoints.Handset
+      Breakpoints.HandsetPortrait
     ]).subscribe(result => {
       if (result.matches) {
-        this.activateHandsetLayout();
+        this.activateHandsetPortraitLayout();
+      }
+    });    this.breakpointObserver.observe([
+      Breakpoints.HandsetLandscape
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.activateHandsetLandscapeLayout();
       }
     });
   }

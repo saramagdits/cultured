@@ -20,6 +20,12 @@ Recipes.getRecipesByCategory = async (category) => {
   return recipesModel.multiple(recipeData);
 };
 
+// GET recent recipes with specified quantity
+Recipes.getRecentRecipes = async (quantity) => {
+  const recipeData = await recipesDB.getRecentRecipesData(quantity);
+  return recipesModel.multiple(recipeData);
+};
+
 // CREATE a new recipe
 Recipes.createNewRecipe = async (queryValues, ingredients) => {
   // Create the recipe data, retrieve the new id

@@ -22,6 +22,7 @@ import {EditRecipeResolver} from './recipes/edit-recipe/edit-recipe-resolver.ser
 import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-resolver.service';
 import {UserProfileResolver} from './users/user-profile/user-profile-resolver.service';
 import {AuthGuard} from './guards/auth.guard';
+import {RecentRecipesResolver} from './services/recent-recipes-resolver.service';
 
 // Routes are in order of most to least specific. Uses a "first-match-wins" strategy
 // The '' empty path represents the default path
@@ -94,6 +95,7 @@ const routes: Routes = [
   // Or Home if logged in
   { path: '',
     component: SplashComponent,
+    resolve: {recipes: RecentRecipesResolver},
     pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }

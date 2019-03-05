@@ -97,6 +97,38 @@ Recipes.getRecipesByCategoryData = async (category) => {
     .catch(e => console.error(e.stack));
 };
 
+// GET recent recipes with specified quantity
+Recipes.getRecentRecipesData = async (quantity) => {
+  const query = {
+    text: 'SELECT\n' +
+      'r.id,\n'+
+      'r.title,\n' +
+      'r.description,\n' +
+      'r.category,\n' +
+      'r.image_path,\n' +
+      'r.prep_time,\n' +
+      'r.ready_time,\n' +
+      'r.difficulty,\n' +
+      'r.times_favorited,\n' +
+      'r.date_created,\n' +
+      'i.value,\n' +
+      'i.quantity,\n' +
+      'i.unit,\n' +
+      'u.username AS author,\n' +
+      'u.avatar_path AS author_avatar\n' +
+      'FROM\n' +
+      'recipes r\n' +
+      'INNER JOIN recipes_ingredients ri ON r.id = ri.recipe_id\n' +
+      'INNER JOIN ingredients i ON ri.ingredient_id = i.id\n' +
+      'INNER JOIN users u on r.author = u.id\n' +
+      'ORDER BY date_created DESC LIMIT $1',
+    values: [quantity]
+  };
+  return await db.query(query)
+    .then(res => {return res.rows})
+    .catch(e => console.error(e.stack));
+};
+
 //========================
 // GUIDELINES FOR RECIPES_INGREDIENTS TABLE DATA
 //========================

@@ -21,38 +21,74 @@ router.get('/search', (req, res) => {
   if (req.query.title) {
     recipes.searchByTitle(req.query.title.split(' '))
       .then(data => {
-        if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+        if (Object.keys(data).length > 0) {
+          res.json(data)
+        } else {
+          throw 'err'
+        }
       })
       .catch(() => res.status(404).send('Could not find any recipes with that title.'));
   } else if (req.query.ing) {
     recipes.searchByIngredients(req.query.ing.split(' '))
       .then(data => {
-        if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+        if (Object.keys(data).length > 0) {
+          res.json(data)
+        } else {
+          throw 'err'
+        }
       })
       .catch(() => res.status(404).send('Could not find any recipes with those ingredients.'))
   } else {
     res.status(404).send('Could not find any recipes.')
   }
-
-
 });
 
+/* GET recent recipes with specified quantity */
+router.get('/recent', (req, res) => {
+  if (req.query.quantity) {
+    recipes.getRecentRecipes(req.query.quantity)
+      .then(data => {
+        if (Object.keys(data).length > 0) {
+          res.json(data)
+        } else {
+          throw 'err'
+        }
+      })
+      .catch(() => {
+        res.status(404).send('Could not find that recipe.')
+      })
+  } else {
+    res.status(400).send('You did not specify a quantity')
+  }
+});
 /* GET recipes listing. */
 router.get('/', (req, res) => {
   recipes.getAllRecipes()
     .then(data => {
-      if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+      if (Object.keys(data).length > 0) {
+        res.json(data)
+      } else {
+        throw 'err'
+      }
     })
-    .catch(() => {res.status(404).send('Could not find any recipes.')});
+    .catch(() => {
+      res.status(404).send('Could not find any recipes.')
+    });
 });
 
 /* GET a single recipe listing by recipe id*/
 router.get('/:id', (req, res) => {
   recipes.getSingleRecipe(req.params.id)
     .then(data => {
-      if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+      if (Object.keys(data).length > 0) {
+        res.json(data)
+      } else {
+        throw 'err'
+      }
     })
-    .catch(() => {res.status(404).send('Could not find that recipe.')})
+    .catch(() => {
+      res.status(404).send('Could not find that recipe.')
+    })
   // res.json(data);
 });
 
@@ -62,10 +98,17 @@ router.get('/category/:category', (req, res) => {
   req.params.category = req.params.category.split('-').join(' ');
   recipes.getRecipesByCategory(req.params.category)
     .then(data => {
-      if (data.length > 0) {res.json(data)} else {throw 'err'}
+      if (data.length > 0) {
+        res.json(data)
+      } else {
+        throw 'err'
+      }
     })
-    .catch(() => {res.status(404).send('Could not find any recipes in that category.')});
+    .catch(() => {
+      res.status(404).send('Could not find any recipes in that category.')
+    });
 });
+
 
 /* CREATE a new recipe */
 router.post('/', passport.authenticate('basic', {session: false}), upload.single('image'), (req, res) => {
@@ -85,10 +128,18 @@ router.post('/', passport.authenticate('basic', {session: false}), upload.single
     const ingredients = req.body.ingredients;
     recipes.createNewRecipe(queryValues, ingredients)
       .then(data => {
-        if (Object.keys(data).length > 0) {res.json(data)} else {throw 'err'}
+        if (Object.keys(data).length > 0) {
+          res.json(data)
+        } else {
+          throw 'err'
+        }
       })
-      .catch(() => {res.status(500).send('Could not create that recipe.')});
-  } else { res.status(400).send('You are missing a required field')}
+      .catch(() => {
+        res.status(500).send('Could not create that recipe.')
+      });
+  } else {
+    res.status(400).send('You are missing a required field')
+  }
 });
 
 

@@ -18,7 +18,7 @@ export class RecipesSearchResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     // Check whether ingredient or title params were given.
     if (route.queryParams.title) {
-      console.log(route.queryParams.title);
+      // console.log(route.queryParams.title);
       return this.recipesService.searchRecipesByTitle(route.queryParams.title ).pipe(recipes => {
           if (recipes) {
             return recipes;
@@ -31,7 +31,7 @@ export class RecipesSearchResolver implements Resolve<any> {
       );
     }
     if (route.queryParams.ings) {
-      console.log(route.queryParams.ings);
+      // console.log(route.queryParams.ings);
       return this.recipesService.searchRecipesByIngredients(route.queryParams.ings).pipe(recipes => {
           if (recipes) {
             return recipes;

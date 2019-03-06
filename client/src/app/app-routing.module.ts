@@ -30,6 +30,7 @@ import {RecentRecipesResolver} from './services/recent-recipes-resolver.service'
 const routes: Routes = [
   { path: 'recipes',
     component: RecipesComponent,
+    resolve: {recipes: RecentRecipesResolver},
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
     children: [

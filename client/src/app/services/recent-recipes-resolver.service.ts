@@ -12,7 +12,7 @@ export class RecentRecipesResolver implements Resolve<any> {
   constructor(private recipesService: RecipesService, private router: Router) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    if ( route.component === SplashComponent ) {
+    // if ( route.component === SplashComponent ) {
       // Specify how many recipes for the splash page
       return this.recipesService.getRecentRecipes(5).pipe(recipes => {
           if (recipes) {
@@ -24,6 +24,6 @@ export class RecentRecipesResolver implements Resolve<any> {
           }
         }
       );
-    }
+    // }
   }
 }

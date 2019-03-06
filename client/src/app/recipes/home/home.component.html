@@ -1,3 +1,26 @@
-<p>
-  home works!
-</p>
+
+  <!--Display recipe category cards-->
+  <div class="grid-container">
+    <!--The rowHeight ratio is column-width:row-height, and must be passed in with a colon-->
+    <!--May also assign rowHeight as 'fit'. Please note the height of the grid-list or its container must be set.-->
+    <mat-grid-list cols="12" [rowHeight]='rowHeight'>
+      <h2 class='mat-h1'>Recent Recipes</h2>
+      <!--<h1 class="mat-h1">{{recipes[0].category}}</h1>-->
+      <mat-grid-tile *ngFor="let card of cards" [colspan]="card.cols" [rowspan]="card.rows" >
+        <mat-card class="recipe-card dashboard-card" >
+          <a [routerLink]='card.recipeRouterLink'><img mat-card-image [src]='(card.imagePath)' [alt]='card.title' ></a>
+          <!--.jumbo-styles applies styling to the first recipe card in web view only-->
+          <mat-card-content [ngClass]="{'jumbo-styles' : card.jumbo, 'tablet-styles' : layoutMode === 'tablet'}">
+            <div [ngClass]="{'jumbo-styles-content' : card.jumbo}">
+              <a [routerLink]='card.recipeRouterLink'><mat-card-title [ngClass]="{'tablet-styles' : layoutMode === 'tablet', 'handset-styles' : layoutMode === 'handset'}">A really long title about sauerkraut and stuff</mat-card-title></a>
+              <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
+              <p *ngIf='card.jumbo'>{{card.description}}</p>
+            </div>
+            <button mat-mini-fab color='accent' class='favorite-button'>
+              <mat-icon aria-label="Favorite this button">favorite</mat-icon>
+            </button>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>

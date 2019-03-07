@@ -36,7 +36,8 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       { path: 'self',
-        component: CurrentUserRecipesComponent
+        component: CurrentUserRecipesComponent,
+        resolve: {recipes: UserRecipesResolver}
       },
       { path: 'search',
         component: RecipesSearchComponent,

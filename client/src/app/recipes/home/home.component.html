@@ -12,7 +12,7 @@
           <!--.jumbo-styles applies styling to the first recipe card in web view only-->
           <mat-card-content [ngClass]="{'jumbo-styles' : card.jumbo, 'tablet-styles' : layoutMode === 'tablet'}">
             <div [ngClass]="{'jumbo-styles-content' : card.jumbo}">
-              <a [routerLink]='card.recipeRouterLink'><mat-card-title [ngClass]="{'tablet-styles' : layoutMode === 'tablet', 'handset-styles' : layoutMode === 'handset'}">A really long title about sauerkraut and stuff</mat-card-title></a>
+              <a [routerLink]='card.recipeRouterLink'><mat-card-title [ngClass]="{'tablet-styles' : layoutMode === 'tablet', 'handset-styles' : layoutMode === 'handset'}">{{card.title}}</mat-card-title></a>
               <mat-card-subtitle>By <a [routerLink]='card.authorRouterLink'>{{card.author}}</a></mat-card-subtitle>
               <p *ngIf='card.jumbo'>{{card.description}}</p>
             </div>

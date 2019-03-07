@@ -61,19 +61,33 @@ router.get('/recent', (req, res) => {
     res.status(400).send('You did not specify a quantity')
   }
 });
+/* GET recipes by author id */
 /* GET recipes listing. */
 router.get('/', (req, res) => {
-  recipes.getAllRecipes()
-    .then(data => {
-      if (Object.keys(data).length > 0) {
-        res.json(data)
-      } else {
-        throw 'err'
-      }
-    })
-    .catch(() => {
-      res.status(404).send('Could not find any recipes.')
-    });
+  if (req.query.authorId) {
+    recipes.getRecipesByAuthorId(req.query.authorId)
+      .then(data => {
+        if (Object.keys(data).length > 0) {
+          res.json(data)
+        } else {
+          throw 'err'
+        }
+      })
+      .catch(() => {
+        res.status(404).send('Could not find any recipes by that author.')
+      });
+  }
+  // recipes.getAllRecipes()
+  //   .then(data => {
+  //     if (Object.keys(data).length > 0) {
+  //       res.json(data)
+  //     } else {
+  //       throw 'err'
+  //     }
+  //   })
+  //   .catch(() => {
+  //     res.status(404).send('Could not find any recipes.')
+  //   });
 });
 
 /* GET a single recipe listing by recipe id*/

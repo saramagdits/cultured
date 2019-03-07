@@ -23,6 +23,7 @@ import {RecipesSearchResolver} from './recipes/recipes-search/recipes-search-res
 import {UserProfileResolver} from './users/user-profile/user-profile-resolver.service';
 import {AuthGuard} from './guards/auth.guard';
 import {RecentRecipesResolver} from './services/recent-recipes-resolver.service';
+import {UserRecipesResolver} from './users/user-recipes-resolver-service';
 
 // Routes are in order of most to least specific. Uses a "first-match-wins" strategy
 // The '' empty path represents the default path
@@ -74,7 +75,7 @@ const routes: Routes = [
       },
       { path: ':id',
         component: UserProfileComponent,
-        resolve: {user: UserProfileResolver}
+        resolve: {user: UserProfileResolver, recipes: UserRecipesResolver}
       },
       // TODO figure out what this goes to
       { path: '',

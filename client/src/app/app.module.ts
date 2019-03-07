@@ -53,6 +53,7 @@ import { FooterComponent } from './footer/footer.component';
 import { RecipeCardComponent } from './recipes/recipe-card/recipe-card.component';
 import { RecipesGridComponent } from './recipes/recipes-grid/recipes-grid.component';
 import {RecentRecipesResolver} from './services/recent-recipes-resolver.service';
+import {UserRecipesResolver} from './users/user-recipes-resolver-service';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import {RecentRecipesResolver} from './services/recent-recipes-resolver.service'
     EditRecipeResolver,
     RecipesSearchResolver,
     RecentRecipesResolver,
+    UserRecipesResolver,
     UserProfileResolver,
     HttpErrorHandlerService,
     AuthenticationService,

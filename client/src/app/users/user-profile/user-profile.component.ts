@@ -59,7 +59,7 @@ export class UserProfileComponent implements OnInit, OnChanges {
         recipe.rows = 4;
         return recipe;
       }
-    ).slice(2);
+    );
   }
   activateHandsetPortraitLayout() {
     this.rowHeight = '1:1.4';
@@ -75,7 +75,7 @@ export class UserProfileComponent implements OnInit, OnChanges {
         recipe.rows = 6;
         return recipe;
       }
-    ).slice(1);
+    );
   }
   activateHandsetLandscapeLayout() {
     this.rowHeight = '1:1.22';
@@ -91,7 +91,7 @@ export class UserProfileComponent implements OnInit, OnChanges {
         recipe.rows = 4;
         return recipe;
       }
-    ).slice(2);
+    );
   }
   constructor(private route: ActivatedRoute, private breakpointObserver: BreakpointObserver) { }
   ngOnChanges() {

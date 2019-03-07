@@ -14,6 +14,12 @@ Recipes.getSingleRecipe = async (recipeId) => {
   return recipesModel.single(recipeData);
 };
 
+// GET recipes by author id
+Recipes.getRecipesByAuthorId = async (authorId) => {
+  const recipeData = await recipesDB.getRecipesByAuthorIdData(authorId);
+  return recipesModel.multiple(recipeData);
+};
+
 // GET recipes by category
 Recipes.getRecipesByCategory = async (category) => {
   const recipeData = await recipesDB.getRecipesByCategoryData(category);

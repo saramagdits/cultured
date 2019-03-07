@@ -27,6 +27,12 @@ export class RecipesService {
     const url = `${this.apiUrl}/recipes/${id}`;
     return this.http.get(url);
   }
+  getRecipesByAuthorId (authorId: number) {
+    const url = `${this.apiUrl}/recipes`;
+    const options = authorId ?
+      { params: new HttpParams().set('authorId', authorId.toString()) } : {};
+    return this.http.get(url, options);
+  }
   getRecipesByCategory (category: string) {
     const url = `${this.apiUrl}/recipes/category/${category}`;
     return this.http.get(url);

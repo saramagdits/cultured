@@ -61,8 +61,22 @@ router.get('/recent', (req, res) => {
     res.status(400).send('You did not specify a quantity')
   }
 });
+/* GET recipes by author id */
 /* GET recipes listing. */
 router.get('/', (req, res) => {
+  if (req.query.authorId) {
+    recipes.getRecipesByAuthorId()
+      .then(data => {
+        if (Object.keys(data).length > 0) {
+          res.json(data)
+        } else {
+          throw 'err'
+        }
+      })
+      .catch(() => {
+        res.status(404).send('Could not find any recipes by that author.')
+      });
+  }
   recipes.getAllRecipes()
     .then(data => {
       if (Object.keys(data).length > 0) {

@@ -66,7 +66,7 @@ Recipes.getSingleRecipeData = async (recipeId) => {
 };
 
 // SELECT recipes by author id
-Recipes.getRecipesByCategoryData = async (authorId) => {
+Recipes.getRecipesByAuthorIdData = async (authorId) => {
   const query = {
     text: 'SELECT\n' +
       'r.id,\n'+

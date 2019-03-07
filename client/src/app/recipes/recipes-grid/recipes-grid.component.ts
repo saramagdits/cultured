@@ -1,7 +1,6 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {map} from 'rxjs/operators';
 import {Breakpoints, BreakpointObserver} from '@angular/cdk/layout';
-import {Router} from '@angular/router';
 import {Ellipsis} from 'ftellipsis';
 import {Observable} from 'rxjs';
 
@@ -99,9 +98,7 @@ export class RecipesGridComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-  }
-
-  ngOnInit() {
+    // Moved breakpoint observers here because they will trigger before ngOnInit(), as well as on an changes.
     this.breakpointObserver.observe([
       Breakpoints.Web
     ]).subscribe(result => {
@@ -129,5 +126,9 @@ export class RecipesGridComponent implements OnInit, OnChanges {
         this.activateHandsetLandscapeLayout();
       }
     });
+  }
+
+  ngOnInit() {
+
   }
 }

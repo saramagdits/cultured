@@ -32,10 +32,9 @@ const routes: Routes = [
   { path: 'recipes',
     component: RecipesComponent,
     resolve: {recipes: RecentRecipesResolver},
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
     children: [
       { path: 'self',
+        canActivate: [AuthGuard],
         component: CurrentUserRecipesComponent,
         resolve: {recipes: UserRecipesResolver}
       },
@@ -44,6 +43,7 @@ const routes: Routes = [
         resolve: {recipes: RecipesSearchResolver}
       },
       { path: 'create',
+        canActivate: [AuthGuard],
         component: CreateRecipeComponent
       },
       { path: 'browse/:category',
@@ -51,6 +51,7 @@ const routes: Routes = [
         component: RecipesCategoryComponent
       },
       { path: ':id/edit',
+        canActivate: [AuthGuard],
         component: EditRecipeComponent,
         resolve: {recipe: EditRecipeResolver}
       },
@@ -69,9 +70,11 @@ const routes: Routes = [
     component: UsersComponent,
     children: [
       { path: 'self/edit',
+        canActivate: [AuthGuard],
         component: CurrentUserProfileEditComponent
       },
       { path: 'self',
+        canActivate: [AuthGuard],
         component: CurrentUserProfileComponent
       },
       { path: ':id',

@@ -46,3 +46,5 @@ misc/
 client/src/assets/fonts/AlfaSlabOne-Regular\.ttf
 
 client/src/assets/fonts/GenBkBasB\.ttf
+
+client/dist/client/

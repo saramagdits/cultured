@@ -8,7 +8,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit, OnChanges {
-  private user;
+  public user;
   private recipes;
   public cards;
   public rowHeight;

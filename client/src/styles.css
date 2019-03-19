@@ -9,3 +9,10 @@ html, body {
 body{
   margin: 0
 }
+#sidebar-title {
+  font-family: 'Alfa Slab One', sans-serif;
+}
+.sidebar-title  {
+  color: #fff;
+  font-family: 'Alfa Slab One', sans-serif;
+}

@@ -52,15 +52,12 @@ mat-toolbar a {
 }
 
 mat-toolbar[_ngcontent-c2] a[_ngcontent-c2].sidebar-title {
-  color: black;
+  color: #fff;
 }
 #sidebar-title {
-  font-family: 'Alfa Slab One', cursive;
+  /*font-family: 'Alfa Slab One', cursive;*/
   color: rgba(0, 0, 0, 0.87);
 }
-/*}mat-toolbar[_ngcontent-c2] a[_ngcontent-c2] {*/
-/*font-family: 'Alfa Slab One', cursive;*/
-/*}*/
 
 app-footer{
   display: flex;

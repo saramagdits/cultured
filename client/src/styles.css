@@ -9,7 +9,7 @@ html, body {
 body{
   margin: 0
 }
-#sidebar-title[_ngcontent-c2] {
+#sidebar-title[_ngcontent-c2], #sidebar-title[_ngcontent-c12] {
   font-family: 'Alfa Slab One', sans-serif !important;
 }
 

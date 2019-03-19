@@ -9,9 +9,10 @@ html, body {
 body{
   margin: 0
 }
-#sidebar-title {
+#sidebar-title[_ngcontent-c2] {
   font-family: 'Alfa Slab One', sans-serif !important;
 }
+
 .sidebar-title  {
   color: #fff;
   font-family: 'Alfa Slab One', sans-serif !important;

@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Gentium+Book+Basic|Lato');
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Lato');
 * {
   font-family: 'Lato', sans-serif;
 }
@@ -10,9 +10,9 @@ body{
   margin: 0
 }
 #sidebar-title {
-  font-family: 'Alfa Slab One', sans-serif;
+  font-family: 'Alfa Slab One', sans-serif !important;
 }
 .sidebar-title  {
   color: #fff;
-  font-family: 'Alfa Slab One', sans-serif;
+  font-family: 'Alfa Slab One', sans-serif !important;
 }

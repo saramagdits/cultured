@@ -73,11 +73,11 @@ npm install
 Overwrite the existing _theming.scss file. Unfortunately, this was the only method of overwriting the prebuilt theme palette.
 
 
-10. Navigate to the /server folder and start the Node server
+9. Navigate to the /server folder and start the Node server
 ```
 npm start
 ```
-11. Navigate to the /client folder and start the Angular Development server
+10. Navigate to the /client folder and start the Angular Development server
 ```
 ng serve
 ```

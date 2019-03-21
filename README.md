@@ -37,7 +37,7 @@ Password: <ANY PASSWORD>
 
 4. Execute the cultured.sql file located in /server/db to create the cultured_db database and necessary tables.
 
-5. Create an environment.js file in the /server/environment folder with the following. An app id and API key from the [Edamam API](https://developer.edamam.com/) are required to get recipe results.
+5. Create an environment.js file in the /server/environment folder with the following:
 
 ```
 const environment = {
@@ -86,7 +86,7 @@ ng serve
 
 ## Built With
 
-* [Node.js](https://nodejs.org/en/) - Used for the backend to serve files, as well as serve as an endpoint for produce and recipe requests.
+* [Node.js](https://nodejs.org/en/) - REST API for requesting and creating users and recipes.
 * [Express](https://expressjs.com/) - Web application framework for Node.js.
 * [Angular 6](https://angular.io/) - Single page application architecture and more.
 * [PostgreSQL](https://www.postgresql.org/) - SQL database used to build the API.

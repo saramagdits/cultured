@@ -50,7 +50,7 @@ const environment = {
   },
   sessionSecret: '<ANY STRING YOU CHOOSE>',
   upload: {
-    avatars: '/<ABSOLUTE PATH TO PROJECT FOLDER>/cultured/client/src/assets/images/users/',
+    avatars: '/<ABSOLUTE PATH TO PROJECT FOLDER>/client/src/assets/images/users/',
     recipes: '/<ABSOLUTE PATH TO PROJECT FOLDER>/client/src/assets/images/recipes/'
   }
 };

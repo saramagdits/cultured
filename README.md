@@ -69,7 +69,7 @@ npm install
 npm install
 ```
 
-8. Duplicate the _theming.scss file found in the /client folder, into the /client/node_modules/@angular/material.
+8. Duplicate the _theming.scss file found in the /client folder, into the /client/node_modules/@angular/material folder.
 Overwrite the existing _theming.scss file. Unfortunately, this was the only method of overwriting the prebuilt theme palette.
 
 
